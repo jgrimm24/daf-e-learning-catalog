@@ -146,7 +146,7 @@ const courses = [
   {
     "id": "course-20",
     "title": "DOT HAZMAT Shipping",
-    "category": "Environmental",
+    "category": "Environment",
     "status": "Published",
     "visible": "Yes",
     "modality": "Practice",
@@ -162,7 +162,7 @@ const courses = [
   {
     "id": "course-23",
     "title": "EMS Awareness Training",
-    "category": "Environmental",
+    "category": "Environment",
     "status": "Published",
     "visible": "Yes",
     "modality": "Practice",
@@ -178,7 +178,7 @@ const courses = [
   {
     "id": "course-24",
     "title": "EMS Senior Leadership Management",
-    "category": "Environmental",
+    "category": "Environment",
     "status": "Published",
     "visible": "Yes",
     "modality": "Practice",
@@ -194,7 +194,7 @@ const courses = [
   {
     "id": "course-46",
     "title": "Hazardous Waste Management",
-    "category": "Environmental",
+    "category": "Environment",
     "status": "Published",
     "visible": "Yes",
     "modality": "Read",
@@ -210,7 +210,7 @@ const courses = [
   {
     "id": "course-49",
     "title": "HAZWOPER 40 Hr",
-    "category": "Environmental",
+    "category": "Environment",
     "status": "Published",
     "visible": "Yes",
     "modality": "Practice",
@@ -226,7 +226,7 @@ const courses = [
   {
     "id": "course-50",
     "title": "HAZWOPER 8 Hr",
-    "category": "Environmental",
+    "category": "Environment",
     "status": "Published",
     "visible": "Yes",
     "modality": "Practice",
@@ -242,7 +242,7 @@ const courses = [
   {
     "id": "course-81",
     "title": "Spill Prevention and Response",
-    "category": "Environmental",
+    "category": "Environment",
     "status": "Published",
     "visible": "Yes",
     "modality": "Practice",
@@ -258,7 +258,7 @@ const courses = [
   {
     "id": "course-82",
     "title": "Storm Water Pollution Prevention",
-    "category": "Environmental",
+    "category": "Environment",
     "status": "Published",
     "visible": "Yes",
     "modality": "Practice",
@@ -274,7 +274,7 @@ const courses = [
   {
     "id": "course-87",
     "title": "Unit Environmental Coordinator",
-    "category": "Environmental",
+    "category": "Environment",
     "status": "Published",
     "visible": "Yes",
     "modality": "Practice",
@@ -290,7 +290,7 @@ const courses = [
   {
     "id": "course-89",
     "title": "Universal Waste Management",
-    "category": "Environmental",
+    "category": "Environment",
     "status": "Published",
     "visible": "Yes",
     "modality": "Practice",
@@ -1492,7 +1492,22 @@ const courses = [
   }
 ];
 
-const categoryOrder = [...new Set(courses.map((course) => course.category))];
+const desiredCategoryOrder = [
+  "Occupational Safety",
+  "Weapons Safety",
+  "Flight Safety",
+  "Bioenvironmental",
+  "Public Health",
+  "Environment",
+  "Other"
+];
+
+const categoryOrder = [
+  ...desiredCategoryOrder.filter((category) => courses.some((course) => course.category === category)),
+  ...[...new Set(courses.map((course) => course.category))].filter(
+    (category) => !desiredCategoryOrder.includes(category),
+  ),
+];
 const spreads = buildSpreads();
 
 const leftPage = document.querySelector("#leftPage");
@@ -1501,8 +1516,6 @@ const prevBtn = document.querySelector("#prevBtn");
 const nextBtn = document.querySelector("#nextBtn");
 const dots = document.querySelector("#dots");
 const book = document.querySelector("#book");
-const spreadLabel = document.querySelector("#spreadLabel");
-const progressFill = document.querySelector("#progressFill");
 const disciplineList = document.querySelector("#disciplineList");
 
 let currentSpread = 0;
@@ -1692,8 +1705,6 @@ function renderSpread(direction = "next") {
   rightPage.innerHTML = spread.right();
   leftPage.className = "page page-left";
   rightPage.className = "page page-right";
-  spreadLabel.textContent = spread.label;
-  progressFill.style.width = `${((currentSpread + 1) / spreads.length) * 100}%`;
   prevBtn.disabled = currentSpread === 0;
   nextBtn.disabled = currentSpread === spreads.length - 1;
 
