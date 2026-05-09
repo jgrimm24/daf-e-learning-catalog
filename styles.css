@@ -275,6 +275,27 @@ h1 {
   background: #123d3a;
 }
 
+.training-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid color-mix(in srgb, var(--course-color), #000 12%);
+  border-radius: 999px;
+  padding: 9px 12px;
+  color: #fff;
+  background: var(--course-color);
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1.15;
+  text-decoration: none;
+}
+
+.training-link:hover {
+  filter: brightness(0.92);
+}
+
 .contents {
   display: grid;
   align-content: start;
