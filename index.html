@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DAF E-Learning Catalog</title>
-    <link rel="stylesheet" href="styles.css?v=20260509-8" />
+    <link rel="stylesheet" href="styles.css?v=20260509-9" />
   </head>
   <body>
     <main class="shell">
@@ -21,6 +21,17 @@
         <aside class="rail" aria-label="Catalog controls">
           <div>
             <p class="rail-label">Browse</p>
+            <div class="search-panel">
+              <label class="search-label" for="courseSearch">Search</label>
+              <input
+                class="search-input"
+                id="courseSearch"
+                type="search"
+                placeholder="Course, rule, topic..."
+                autocomplete="off"
+              />
+              <div class="search-results" id="searchResults" aria-live="polite"></div>
+            </div>
             <div class="discipline-list" id="disciplineList"></div>
           </div>
         </aside>
@@ -44,6 +55,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=20260509-8"></script>
+    <script src="app.js?v=20260509-9"></script>
   </body>
 </html>

@@ -1609,9 +1609,13 @@ const nextBtn = document.querySelector("#nextBtn");
 const dots = document.querySelector("#dots");
 const book = document.querySelector("#book");
 const disciplineList = document.querySelector("#disciplineList");
+const courseSearch = document.querySelector("#courseSearch");
+const searchResults = document.querySelector("#searchResults");
 
 let currentSpread = 0;
 let activeCategory = "All";
+let expandedCategory = "";
+let searchTerm = "";
 
 function buildSpreads() {
   const pages = [
@@ -1633,6 +1637,8 @@ function buildSpreads() {
       pages.push({
         label: category,
         category,
+        courseId: course.id,
+        courseTitle: course.title,
         render: () => coursePage(course, index + 1),
       });
     });
@@ -1837,29 +1843,66 @@ function renderDots() {
       const target = Number(button.dataset.spread);
       const direction = target < currentSpread ? "prev" : "next";
       currentSpread = target;
-      activeCategory = "All";
-      renderCategoryState();
+      updateActiveCategoryFromSpread();
+      renderCategories();
       renderSpread(direction);
     });
   });
 }
 
 function renderCategories() {
-  const buttons = ["All", ...categoryOrder]
+  const allButton = `
+    <button class="discipline-button" type="button" data-category="All">
+      <span>All</span>
+      <span>${courses.length}</span>
+    </button>
+  `;
+
+  const categoryButtons = categoryOrder
     .map((category) => {
-      const count = category === "All" ? courses.length : courses.filter((course) => course.category === category).length;
+      const categoryCourses = courses.filter((course) => course.category === category);
+      const courseButtons =
+        expandedCategory === category
+          ? `
+            <div class="category-courses" id="courses-${slugify(category)}">
+              ${categoryCourses
+                .map(
+                  (course) => `
+                    <button class="course-link-button" type="button" data-course-id="${escapeAttr(course.id)}">
+                      <span>${escapeHtml(course.title)}</span>
+                      <small>${escapeHtml(course.modality)}</small>
+                    </button>
+                  `,
+                )
+                .join("")}
+            </div>
+          `
+          : "";
+
       return `
-      <button class="discipline-button" type="button" data-category="${escapeAttr(category)}">
-        <span>${category}</span>
-        <span>${count}</span>
-      </button>
-    `;
+        <div class="category-group">
+          <button
+            class="discipline-button"
+            type="button"
+            data-category="${escapeAttr(category)}"
+            aria-expanded="${expandedCategory === category}"
+            aria-controls="courses-${slugify(category)}"
+          >
+            <span>${escapeHtml(category)}</span>
+            <span>${categoryCourses.length}</span>
+          </button>
+          ${courseButtons}
+        </div>
+      `;
     })
     .join("");
 
-  disciplineList.innerHTML = buttons;
-  disciplineList.querySelectorAll("button").forEach((button) => {
+  disciplineList.innerHTML = allButton + categoryButtons;
+  disciplineList.querySelectorAll(".discipline-button").forEach((button) => {
     button.addEventListener("click", () => goToCategory(button.dataset.category));
+  });
+  disciplineList.querySelectorAll(".course-link-button").forEach((button) => {
+    button.addEventListener("click", () => goToCourse(button.dataset.courseId));
   });
   renderCategoryState();
 }
@@ -1867,30 +1910,121 @@ function renderCategories() {
 function goToCategory(category) {
   activeCategory = category;
   if (category === "All") {
+    expandedCategory = "";
     currentSpread = 1;
   } else {
+    expandedCategory = expandedCategory === category ? "" : category;
     const targetSpread = spreads.findIndex((spread) => spread.leftMeta?.isSectionStart && spread.leftMeta.category === category);
     currentSpread = targetSpread === -1 ? 1 : targetSpread;
   }
-  renderCategoryState();
+  renderCategories();
   renderSpread("next");
 }
 
-function renderCategoryState() {
-  disciplineList.querySelectorAll("button").forEach((button) => {
-    button.setAttribute("aria-current", String(button.dataset.category === activeCategory));
+function goToCourse(courseId) {
+  const course = courses.find((item) => item.id === courseId);
+  const targetSpread = spreads.findIndex(
+    (spread) => spread.leftMeta?.courseId === courseId || spread.rightMeta?.courseId === courseId,
+  );
+  if (targetSpread === -1) return;
+  const direction = targetSpread < currentSpread ? "prev" : "next";
+  currentSpread = targetSpread;
+  activeCategory = course?.category || "All";
+  expandedCategory = course?.category || "";
+  renderCategories();
+  renderSearchResults();
+  renderSpread(direction);
+}
+
+function renderSearchResults() {
+  if (!searchResults) return;
+  const query = searchTerm.trim().toLowerCase();
+  if (!query) {
+    searchResults.innerHTML = "";
+    return;
+  }
+
+  const matches = courses
+    .filter((course) => courseSearchText(course).includes(query))
+    .slice(0, 12);
+
+  if (!matches.length) {
+    searchResults.innerHTML = `<p class="search-empty">No matches found.</p>`;
+    return;
+  }
+
+  searchResults.innerHTML = matches
+    .map(
+      (course) => `
+        <button class="search-result-button" type="button" data-course-id="${escapeAttr(course.id)}">
+          <span>${escapeHtml(course.title)}</span>
+          <small>${escapeHtml(course.category)} · ${escapeHtml(course.modality)}</small>
+        </button>
+      `,
+    )
+    .join("");
+
+  searchResults.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", () => goToCourse(button.dataset.courseId));
   });
 }
 
+function courseSearchText(course) {
+  return [
+    course.title,
+    course.category,
+    course.modality,
+    course.frequency,
+    course.regulation,
+    course.description,
+    course.standards.join(" "),
+  ]
+    .join(" ")
+    .toLowerCase();
+}
+
+function slugify(value) {
+  return String(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function escapeAttr(value) {
-  return String(value).replace(/"/g, "&quot;");
+  return escapeHtml(value);
+}
+
+function updateActiveCategoryFromSpread() {
+  const spread = spreads[currentSpread];
+  activeCategory = spread.leftMeta?.category || spread.rightMeta?.category || "All";
+}
+
+function renderCategoryState() {
+  disciplineList.querySelectorAll(".discipline-button").forEach((button) => {
+    button.setAttribute("aria-current", String(button.dataset.category === activeCategory));
+  });
+  disciplineList.querySelectorAll(".course-link-button").forEach((button) => {
+    const isCurrent =
+      spreads[currentSpread].leftMeta?.courseId === button.dataset.courseId ||
+      spreads[currentSpread].rightMeta?.courseId === button.dataset.courseId;
+    button.setAttribute("aria-current", String(isCurrent));
+  });
 }
 
 prevBtn.addEventListener("click", () => {
   if (currentSpread > 0) {
     currentSpread -= 1;
-    activeCategory = "All";
-    renderCategoryState();
+    updateActiveCategoryFromSpread();
+    renderCategories();
     renderSpread("prev");
   }
 });
@@ -1898,10 +2032,15 @@ prevBtn.addEventListener("click", () => {
 nextBtn.addEventListener("click", () => {
   if (currentSpread < spreads.length - 1) {
     currentSpread += 1;
-    activeCategory = "All";
-    renderCategoryState();
+    updateActiveCategoryFromSpread();
+    renderCategories();
     renderSpread("next");
   }
+});
+
+courseSearch?.addEventListener("input", (event) => {
+  searchTerm = event.target.value;
+  renderSearchResults();
 });
 
 window.addEventListener("keydown", (event) => {
