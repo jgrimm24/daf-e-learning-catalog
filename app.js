@@ -1650,7 +1650,6 @@ function sectionPage(category, categoryCourses) {
 }
 
 function coursePage(course, pageNumber) {
-  const standards = course.standards.map((standard) => `<span class="tag">${standard}</span>`).join("");
   const note = course.note ? `<span class="status-note">${course.note}</span>` : "";
 
   return `
@@ -1672,7 +1671,6 @@ function coursePage(course, pageNumber) {
         <span>Regulation</span>
         <strong>${course.regulation}</strong>
       </div>
-      <div class="tags">${standards}</div>
     </div>
   `;
 }
