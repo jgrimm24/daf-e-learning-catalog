@@ -625,7 +625,7 @@ const courses = [
     "visible": "Yes",
     "modality": "Practice",
     "note": "",
-    "frequency": "Annually",
+    "frequency": "Initial; retrain as needed",
     "regulation": "91-203, 29 CFR 1910.147",
     "description": "Critical Safety; This course is conducted at local level. Lockout/Tagout training is required by all members that perform maintenance or servicing on machines that have energized sources. Training shall be provided to ensure the purpose and function of the Lockout and Tagout program is understood. Training will be conducted by Wing Safety IAW 29 CFR 1910.147. All authorized personnel or any qualified equipment maintenance person shall receive initial jo...",
     "standards": [
@@ -642,7 +642,7 @@ const courses = [
     "visible": "Yes",
     "modality": "Practice",
     "note": "",
-    "frequency": "Annual 2 year",
+    "frequency": "Before cert expires",
     "regulation": "DAFMAN 91-203",
     "description": "Non-Critical safety; This course is tracked at local level. Cardiopulmonary Resuscitation (CPR) is required training for all personnel who install, inspect or repair electrical systems or equipment, or who perform duties as safety observers and includes all Aircraft Maintainers, Security Forces, Fitness Monitors, Medical Group, and Communications Flight personnel. It is conducted by a qualified instructor with hands on training. 23April26 Course POC: Fo...",
     "standards": [
@@ -674,7 +674,7 @@ const courses = [
     "visible": "Yes",
     "modality": "Read",
     "note": "",
-    "frequency": "Annual",
+    "frequency": "Initial",
     "regulation": "91-203. 29 CFR 1910.23",
     "description": "Critical Safety; This course is conducted at local level. Personnel who use ladders at working heights of six feet or more will be adequately trained in the care and use of different types of ladders. Training will be conducted IAW 29 CFR 1910.23. The supervisor, or a designated trainer, will conduct this training when a worker is first assigned and periodically as needed. Wing Safety will provide training and presentation materials. This course covers...",
     "standards": [
@@ -788,7 +788,7 @@ const courses = [
     "visible": "Yes",
     "modality": "Practice",
     "note": "",
-    "frequency": "One Time",
+    "frequency": "Initial + 3 Year Eval",
     "regulation": "29 CFR 1910.178",
     "description": "Critical Safety; All personnel are required to complete Power Industrial Truck Initial Training from the Safety Office before operating any power industrial truck. This mandatory course is conducted in-person only; there are no online modules or computer-based training (CBT) components. Upon completion, Unit Training Managers (UTMs) and Unit Safety Representatives (USRs) should ensure the training is properly documented. Slides can be review but class w...",
     "standards": [
