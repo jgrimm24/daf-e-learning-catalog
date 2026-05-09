@@ -266,9 +266,17 @@ h1 {
 .closing h2 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2rem, 4vw, 3.45rem);
+  font-size: clamp(2rem, 3.1vw, 3rem);
   line-height: 1;
   letter-spacing: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.contents h2,
+.closing h2 {
+  font-size: clamp(2rem, 3.4vw, 3.3rem);
 }
 
 .contents-list {
@@ -356,10 +364,12 @@ h1 {
   gap: 10px;
   align-items: start;
   justify-content: space-between;
+  min-width: 0;
 }
 
 .course-title h2 {
-  max-width: 420px;
+  min-width: 0;
+  max-width: min(100%, 360px);
 }
 
 .badge {
