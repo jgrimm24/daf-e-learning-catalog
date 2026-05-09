@@ -1,0 +1,4 @@
+*.xlsx
+~$*
+*.txt
+.DS_Store
