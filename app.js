@@ -1665,7 +1665,7 @@ function buildSpreads() {
 function coverPage() {
   return `
     <div class="cover-page page-fill">
-      <div class="cover-mark" aria-hidden="true"></div>
+      <img class="cover-badge" src="ANG%20Safety%20Badge.jpeg" alt="ANG Safety Badge" />
       <div>
         <p class="kicker">Air National Guard</p>
         <h2>E-Learning Catalog</h2>
