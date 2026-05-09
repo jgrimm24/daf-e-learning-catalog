@@ -1667,8 +1667,6 @@ function coursePage(course, pageNumber) {
       <p class="description">${course.description}</p>
       <div class="detail-grid">
         <div class="detail"><span>Frequency</span><strong>${course.frequency}</strong></div>
-        <div class="detail"><span>Status</span><strong>${course.status}</strong></div>
-        <div class="detail"><span>Visible</span><strong>${course.visible}</strong></div>
       </div>
       <div class="regulation-block">
         <span>Regulation</span>
