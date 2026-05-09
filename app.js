@@ -1610,6 +1610,12 @@ function contentsPage() {
       <p class="kicker">Table of Contents</p>
       <h2>Find the right requirement.</h2>
       <div class="contents-list">${rows}</div>
+      <div class="format-note">
+        <p class="kicker">Training Formats</p>
+        <p><strong>Read:</strong> Standard material that can be accessed, completed, and signed off directly by the member.</p>
+        <p><strong>Practice:</strong> Generic, instructor-led course material that must be signed off by a Unit Training Manager (UTM).</p>
+        <p class="small-note"><strong>Note:</strong> These courses provide a general baseline and may not cover unit-specific business practices. As a best practice, it is recommended to create parallel training folders alongside your unit's team folders, categorized by discipline and named according to the ANG Course title. ANG courses will be reviewed and updated annually; we appreciate your patience as we refine this initial rollout.</p>
+      </div>
     </div>
   `;
 }

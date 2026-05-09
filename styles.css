@@ -290,7 +290,28 @@ h1 {
 
 .contents-list {
   display: grid;
-  gap: 13px;
+  gap: 9px;
+}
+
+.format-note {
+  display: grid;
+  gap: 7px;
+  margin-top: 4px;
+  border-top: 2px solid rgba(25, 75, 72, 0.28);
+  padding-top: 12px;
+}
+
+.format-note p {
+  margin: 0;
+  color: #433f37;
+  font-size: 0.82rem;
+  line-height: 1.32;
+}
+
+.format-note .small-note {
+  color: #5f594f;
+  font-size: 0.74rem;
+  line-height: 1.28;
 }
 
 .overview-list {
