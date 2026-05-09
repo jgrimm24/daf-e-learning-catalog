@@ -334,7 +334,7 @@ h1 {
 .course-page {
   display: grid;
   grid-template-rows: auto auto 1fr auto auto auto;
-  gap: 15px;
+  gap: 11px;
 }
 
 .section-page {
@@ -365,7 +365,7 @@ h1 {
 
 .course-head {
   display: grid;
-  gap: 10px;
+  gap: 7px;
 }
 
 .course-title {
@@ -395,12 +395,12 @@ h1 {
 .description {
   margin: 0;
   color: #433f37;
-  font-size: 0.98rem;
-  line-height: 1.5;
+  font-size: 0.94rem;
+  line-height: 1.42;
 }
 
 .course-visual {
-  min-height: 124px;
+  min-height: 82px;
   border: 1px solid rgba(32, 32, 29, 0.12);
   border-radius: 8px;
   background:
@@ -411,12 +411,12 @@ h1 {
 .detail-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 9px;
 }
 
 .detail {
   border-top: 2px solid var(--course-color);
-  padding-top: 9px;
+  padding-top: 7px;
 }
 
 .detail span {
@@ -429,8 +429,8 @@ h1 {
 
 .detail strong {
   display: block;
-  margin-top: 4px;
-  font-size: 0.94rem;
+  margin-top: 3px;
+  font-size: 0.9rem;
 }
 
 .tags {
@@ -450,9 +450,9 @@ h1 {
 
 .regulation-block {
   display: grid;
-  gap: 5px;
+  gap: 4px;
   border-left: 3px solid var(--course-color);
-  padding: 8px 0 8px 12px;
+  padding: 7px 0 7px 12px;
   background: rgba(255, 255, 255, 0.3);
 }
 
