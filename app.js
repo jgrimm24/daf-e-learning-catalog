@@ -1679,7 +1679,7 @@ function insideCoverPage() {
   return `
     <div class="inside-cover page-fill">
       <p>
-        A field guide to safety, health, environmental, flight, and weapons training requirements.
+        A guide to safety, health, environmental, flight, and weapons training available on DAF E-Learning.
       </p>
       <div class="detail-grid">
         <div class="detail"><span>Courses</span><strong>${courses.length}</strong></div>
