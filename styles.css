@@ -254,6 +254,27 @@ h1 {
   line-height: 1.42;
 }
 
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  border: 1px solid rgba(25, 75, 72, 0.22);
+  border-radius: 999px;
+  padding: 11px 14px;
+  color: #fff9eb;
+  background: var(--cover);
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  background: #123d3a;
+}
+
 .contents {
   display: grid;
   align-content: start;
