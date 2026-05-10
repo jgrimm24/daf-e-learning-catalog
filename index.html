@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DAF E-Learning Catalog</title>
-    <link rel="stylesheet" href="styles.css?v=20260509-16" />
+    <link rel="stylesheet" href="styles.css?v=20260510-1" />
   </head>
   <body>
     <main class="shell">
@@ -16,7 +16,13 @@
       <section class="catalog-app" aria-label="Course catalog book">
         <aside class="rail" aria-label="Catalog controls">
           <div>
-            <p class="rail-label">Browse</p>
+            <div class="rail-heading">
+              <p class="rail-label">Browse</p>
+              <div class="view-toggle" aria-label="Catalog view">
+                <button type="button" data-view-mode="desktop">Desktop</button>
+                <button type="button" data-view-mode="mobile">Mobile</button>
+              </div>
+            </div>
             <div class="search-panel">
               <label class="search-label" for="courseSearch">Search</label>
               <input
@@ -51,6 +57,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=20260509-16"></script>
+    <script src="app.js?v=20260510-1"></script>
   </body>
 </html>

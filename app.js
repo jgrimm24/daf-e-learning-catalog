@@ -1600,7 +1600,8 @@ const categoryOrder = [
     (category) => !desiredCategoryOrder.includes(category),
   ),
 ];
-const spreads = buildSpreads();
+const pages = buildPages();
+const spreads = buildSpreads(pages);
 
 const leftPage = document.querySelector("#leftPage");
 const rightPage = document.querySelector("#rightPage");
@@ -1611,13 +1612,16 @@ const book = document.querySelector("#book");
 const disciplineList = document.querySelector("#disciplineList");
 const courseSearch = document.querySelector("#courseSearch");
 const searchResults = document.querySelector("#searchResults");
+const viewButtons = document.querySelectorAll("[data-view-mode]");
 
 let currentSpread = 0;
+let currentPage = 0;
+let viewMode = getInitialViewMode();
 let activeCategory = "All";
 let expandedCategory = "";
 let searchTerm = "";
 
-function buildSpreads() {
+function buildPages() {
   const pages = [
     { label: "Cover", render: coverPage },
     { label: "Cover", render: insideCoverPage },
@@ -1649,14 +1653,18 @@ function buildSpreads() {
 
   pages.push({ label: "Closing", render: closingPage });
 
+  return pages;
+}
+
+function buildSpreads(pageList) {
   const paired = [];
-  for (let index = 0; index < pages.length; index += 2) {
+  for (let index = 0; index < pageList.length; index += 2) {
     paired.push({
-      label: pages[index].label,
-      left: pages[index].render,
-      right: pages[index + 1]?.render || blankPage,
-      leftMeta: pages[index],
-      rightMeta: pages[index + 1],
+      label: pageList[index].label,
+      left: pageList[index].render,
+      right: pageList[index + 1]?.render || blankPage,
+      leftMeta: pageList[index],
+      rightMeta: pageList[index + 1],
     });
   }
   return paired;
@@ -1802,21 +1810,31 @@ function blankPage() {
   return `<div class="inside-cover page-fill"><p>End of catalog.</p></div>`;
 }
 
-function renderSpread(direction = "next") {
-  const spread = spreads[currentSpread];
+function renderCurrent(direction = "next") {
   book.classList.remove("turning-next", "turning-prev");
   void book.offsetWidth;
   book.classList.add(direction === "prev" ? "turning-prev" : "turning-next");
 
-  leftPage.innerHTML = spread.left();
-  rightPage.innerHTML = spread.right();
-  leftPage.className = "page page-left";
-  rightPage.className = "page page-right";
-  prevBtn.disabled = currentSpread === 0;
-  nextBtn.disabled = currentSpread === spreads.length - 1;
+  if (viewMode === "mobile") {
+    const page = pages[currentPage];
+    leftPage.innerHTML = "";
+    rightPage.innerHTML = page.render();
+    leftPage.className = "page page-left";
+    rightPage.className = "page page-right page-single";
+    prevBtn.disabled = currentPage === 0;
+    nextBtn.disabled = currentPage === pages.length - 1;
+  } else {
+    const spread = spreads[currentSpread];
+    leftPage.innerHTML = spread.left();
+    rightPage.innerHTML = spread.right();
+    leftPage.className = "page page-left";
+    rightPage.className = "page page-right";
+    prevBtn.disabled = currentSpread === 0;
+    nextBtn.disabled = currentSpread === spreads.length - 1;
+  }
 
   document.querySelectorAll(".dot").forEach((dot, index) => {
-    dot.setAttribute("aria-current", String(index === currentSpread));
+    dot.setAttribute("aria-current", String(index === getCurrentIndex()));
   });
 
   document.querySelectorAll(".contents-row").forEach((row) => {
@@ -1830,22 +1848,24 @@ function renderSpread(direction = "next") {
 }
 
 function renderDots() {
-  dots.innerHTML = spreads
+  const items = viewMode === "mobile" ? pages : spreads;
+  const label = viewMode === "mobile" ? "page" : "spread";
+  dots.innerHTML = items
     .map(
       (_, index) => `
-      <button class="dot" type="button" aria-label="Go to spread ${index + 1}" aria-current="${index === currentSpread}" data-spread="${index}"></button>
+      <button class="dot" type="button" aria-label="Go to ${label} ${index + 1}" aria-current="${index === getCurrentIndex()}" data-index="${index}"></button>
     `,
     )
     .join("");
 
   dots.querySelectorAll("button").forEach((button) => {
     button.addEventListener("click", () => {
-      const target = Number(button.dataset.spread);
-      const direction = target < currentSpread ? "prev" : "next";
-      currentSpread = target;
-      updateActiveCategoryFromSpread();
+      const target = Number(button.dataset.index);
+      const direction = target < getCurrentIndex() ? "prev" : "next";
+      setCurrentIndex(target);
+      updateActiveCategoryFromCurrent();
       renderCategories();
-      renderSpread(direction);
+      renderCurrent(direction);
     });
   });
 }
@@ -1911,29 +1931,31 @@ function goToCategory(category) {
   activeCategory = category;
   if (category === "All") {
     expandedCategory = "";
-    currentSpread = 1;
+    setCurrentIndex(1);
   } else {
     expandedCategory = expandedCategory === category ? "" : category;
-    const targetSpread = spreads.findIndex((spread) => spread.leftMeta?.isSectionStart && spread.leftMeta.category === category);
-    currentSpread = targetSpread === -1 ? 1 : targetSpread;
+    const target = viewMode === "mobile"
+      ? pages.findIndex((page) => page.isSectionStart && page.category === category)
+      : spreads.findIndex((spread) => spread.leftMeta?.isSectionStart && spread.leftMeta.category === category);
+    setCurrentIndex(target === -1 ? 1 : target);
   }
   renderCategories();
-  renderSpread("next");
+  renderCurrent("next");
 }
 
 function goToCourse(courseId) {
   const course = courses.find((item) => item.id === courseId);
-  const targetSpread = spreads.findIndex(
-    (spread) => spread.leftMeta?.courseId === courseId || spread.rightMeta?.courseId === courseId,
-  );
-  if (targetSpread === -1) return;
-  const direction = targetSpread < currentSpread ? "prev" : "next";
-  currentSpread = targetSpread;
+  const target = viewMode === "mobile"
+    ? pages.findIndex((page) => page.courseId === courseId)
+    : spreads.findIndex((spread) => spread.leftMeta?.courseId === courseId || spread.rightMeta?.courseId === courseId);
+  if (target === -1) return;
+  const direction = target < getCurrentIndex() ? "prev" : "next";
+  setCurrentIndex(target);
   activeCategory = course?.category || "All";
   expandedCategory = course?.category || "";
   renderCategories();
   renderSearchResults();
-  renderSpread(direction);
+  renderCurrent(direction);
 }
 
 function renderSearchResults() {
@@ -2003,7 +2025,59 @@ function escapeAttr(value) {
   return escapeHtml(value);
 }
 
-function updateActiveCategoryFromSpread() {
+function getInitialViewMode() {
+  const saved = window.localStorage.getItem("catalogViewMode");
+  if (saved === "desktop" || saved === "mobile") return saved;
+  return window.matchMedia("(max-width: 680px)").matches ? "mobile" : "desktop";
+}
+
+function getCurrentIndex() {
+  return viewMode === "mobile" ? currentPage : currentSpread;
+}
+
+function setCurrentIndex(index) {
+  if (viewMode === "mobile") {
+    currentPage = index;
+  } else {
+    currentSpread = index;
+  }
+}
+
+function setViewMode(mode) {
+  if (mode !== "desktop" && mode !== "mobile") return;
+  if (mode === viewMode) {
+    updateViewModeControls();
+    return;
+  }
+  if (mode === "mobile") {
+    currentPage = Math.min(currentSpread * 2, pages.length - 1);
+  } else {
+    currentSpread = Math.min(Math.floor(currentPage / 2), spreads.length - 1);
+  }
+  viewMode = mode;
+  window.localStorage.setItem("catalogViewMode", mode);
+  updateViewModeControls();
+  updateActiveCategoryFromCurrent();
+  renderDots();
+  renderCategories();
+  renderCurrent("next");
+}
+
+function updateViewModeControls() {
+  document.body.dataset.catalogView = viewMode;
+  prevBtn.setAttribute("aria-label", viewMode === "mobile" ? "Previous page" : "Previous spread");
+  nextBtn.setAttribute("aria-label", viewMode === "mobile" ? "Next page" : "Next spread");
+  viewButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.viewMode === viewMode));
+  });
+}
+
+function updateActiveCategoryFromCurrent() {
+  if (viewMode === "mobile") {
+    const page = pages[currentPage];
+    activeCategory = page?.category || "All";
+    return;
+  }
   const spread = spreads[currentSpread];
   activeCategory = spread.leftMeta?.category || spread.rightMeta?.category || "All";
 }
@@ -2014,27 +2088,30 @@ function renderCategoryState() {
   });
   disciplineList.querySelectorAll(".course-link-button").forEach((button) => {
     const isCurrent =
-      spreads[currentSpread].leftMeta?.courseId === button.dataset.courseId ||
-      spreads[currentSpread].rightMeta?.courseId === button.dataset.courseId;
+      viewMode === "mobile"
+        ? pages[currentPage]?.courseId === button.dataset.courseId
+        : spreads[currentSpread].leftMeta?.courseId === button.dataset.courseId ||
+          spreads[currentSpread].rightMeta?.courseId === button.dataset.courseId;
     button.setAttribute("aria-current", String(isCurrent));
   });
 }
 
 prevBtn.addEventListener("click", () => {
-  if (currentSpread > 0) {
-    currentSpread -= 1;
-    updateActiveCategoryFromSpread();
+  if (getCurrentIndex() > 0) {
+    setCurrentIndex(getCurrentIndex() - 1);
+    updateActiveCategoryFromCurrent();
     renderCategories();
-    renderSpread("prev");
+    renderCurrent("prev");
   }
 });
 
 nextBtn.addEventListener("click", () => {
-  if (currentSpread < spreads.length - 1) {
-    currentSpread += 1;
-    updateActiveCategoryFromSpread();
+  const maxIndex = viewMode === "mobile" ? pages.length - 1 : spreads.length - 1;
+  if (getCurrentIndex() < maxIndex) {
+    setCurrentIndex(getCurrentIndex() + 1);
+    updateActiveCategoryFromCurrent();
     renderCategories();
-    renderSpread("next");
+    renderCurrent("next");
   }
 });
 
@@ -2043,11 +2120,16 @@ courseSearch?.addEventListener("input", (event) => {
   renderSearchResults();
 });
 
+viewButtons.forEach((button) => {
+  button.addEventListener("click", () => setViewMode(button.dataset.viewMode));
+});
+
 window.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") prevBtn.click();
   if (event.key === "ArrowRight") nextBtn.click();
 });
 
+updateViewModeControls();
 renderCategories();
 renderDots();
-renderSpread();
+renderCurrent();
