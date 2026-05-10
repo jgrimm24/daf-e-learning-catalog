@@ -460,9 +460,23 @@ h1 {
   color: var(--ink);
 }
 
+.mobile-steps {
+  display: grid;
+  gap: 3px;
+  margin: 7px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
 .mobile-course-title {
   margin-top: 7px;
+  border-radius: 6px;
+  padding: 7px 8px;
   color: var(--ink);
+  background: rgba(255, 252, 244, 0.72);
   font-size: 0.86rem;
   font-weight: 900;
   line-height: 1.25;

@@ -1775,9 +1775,14 @@ function coursePage(course, pageNumber) {
       <div class="training-action">
         <a class="training-link" href="${escapeAttr(course.trainingUrl)}" target="_blank" rel="noopener noreferrer">Go to training</a>
         <div class="training-mobile-card">
-          <p><strong>Phone access:</strong> Browser sign-in may require military email access. Open the Skillsoft Percipio app instead, sign in with site name <strong>usaf</strong>, then search this title:</p>
+          <p><strong>Phone access:</strong> Use the Skillsoft Percipio app instead of the browser.</p>
+          <ol class="mobile-steps">
+            <li>Open the Skillsoft Percipio app.</li>
+            <li>Sign in with site name <strong>usaf</strong>.</li>
+            <li>Search for this course title:</li>
+          </ol>
           <div class="mobile-course-title">${escapeHtml(course.title)}</div>
-          <button class="copy-title-button" type="button" data-copy-title="${escapeAttr(course.title)}">Copy title</button>
+          <button class="copy-title-button" type="button" data-copy-title="${escapeAttr(course.title)}">Copy course title to search</button>
         </div>
       </div>
     `
@@ -2105,16 +2110,17 @@ function handleTrainingLinkClick(event) {
 async function copyCourseTitle(button) {
   const title = button.dataset.copyTitle || "";
   if (!title) return;
+  const idleText = "Copy course title to search";
   try {
     await navigator.clipboard.writeText(title);
-    button.textContent = "Copied";
+    button.textContent = "Copied title";
     window.setTimeout(() => {
-      button.textContent = "Copy title";
+      button.textContent = idleText;
     }, 1800);
   } catch {
-    button.textContent = "Select title above";
+    button.textContent = "Select the title above";
     window.setTimeout(() => {
-      button.textContent = "Copy title";
+      button.textContent = idleText;
     }, 1800);
   }
 }
