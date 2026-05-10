@@ -1770,7 +1770,11 @@ function coursePage(course, pageNumber) {
     ? `
       <div class="training-action">
         <a class="training-link" href="${escapeAttr(course.trainingUrl)}" target="_blank" rel="noopener noreferrer">Go to training</a>
-        <p class="training-mobile-note">Mobile users: sign in with site name <strong>usaf</strong>. If the app does not open this link, search for <strong>${escapeHtml(course.title)}</strong> in Skillsoft Percipio.</p>
+        <div class="training-mobile-card">
+          <p><strong>Phone access:</strong> Browser sign-in may require military email access. Open the Skillsoft Percipio app instead, sign in with site name <strong>usaf</strong>, then search this title:</p>
+          <div class="mobile-course-title">${escapeHtml(course.title)}</div>
+          <button class="copy-title-button" type="button" data-copy-title="${escapeAttr(course.title)}">Copy title</button>
+        </div>
       </div>
     `
     : "";
@@ -1851,6 +1855,9 @@ function renderCurrent(direction = "next") {
 
   document.querySelectorAll(".training-link").forEach((link) => {
     link.addEventListener("click", handleTrainingLinkClick);
+  });
+  document.querySelectorAll(".copy-title-button").forEach((button) => {
+    button.addEventListener("click", () => copyCourseTitle(button));
   });
 
   window.setTimeout(() => book.classList.remove("turning-next", "turning-prev"), 380);
@@ -2088,7 +2095,24 @@ function isMobileDevice() {
 function handleTrainingLinkClick(event) {
   if (!isMobileDevice()) return;
   event.preventDefault();
-  window.location.href = event.currentTarget.href;
+  event.currentTarget.closest(".training-action")?.querySelector(".copy-title-button")?.focus();
+}
+
+async function copyCourseTitle(button) {
+  const title = button.dataset.copyTitle || "";
+  if (!title) return;
+  try {
+    await navigator.clipboard.writeText(title);
+    button.textContent = "Copied";
+    window.setTimeout(() => {
+      button.textContent = "Copy title";
+    }, 1800);
+  } catch {
+    button.textContent = "Select title above";
+    window.setTimeout(() => {
+      button.textContent = "Copy title";
+    }, 1800);
+  }
 }
 
 function updateActiveCategoryFromCurrent() {

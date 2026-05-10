@@ -440,21 +440,51 @@ h1 {
   filter: brightness(0.92);
 }
 
-.training-mobile-note {
+.training-mobile-card {
   display: none;
-  margin: 0;
   max-width: 320px;
+  border-left: 3px solid var(--course-color);
+  padding: 9px 0 9px 12px;
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.training-mobile-card p {
+  margin: 0;
   color: var(--muted);
   font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.35;
 }
 
-.training-mobile-note strong {
+.training-mobile-card strong {
   color: var(--ink);
 }
 
-body[data-catalog-view="mobile"] .training-mobile-note {
+.mobile-course-title {
+  margin-top: 7px;
+  color: var(--ink);
+  font-size: 0.86rem;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.copy-title-button {
+  margin-top: 8px;
+  border: 1px solid rgba(32, 32, 29, 0.16);
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: var(--ink);
+  background: rgba(255, 252, 244, 0.72);
+  font-size: 0.76rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+body[data-catalog-view="mobile"] .training-link {
+  display: none;
+}
+
+body[data-catalog-view="mobile"] .training-mobile-card {
   display: block;
 }
 
