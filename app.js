@@ -1770,7 +1770,7 @@ function coursePage(course, pageNumber) {
     ? `
       <div class="training-action">
         <a class="training-link" href="${escapeAttr(course.trainingUrl)}" target="_blank" rel="noopener noreferrer">Go to training</a>
-        <p class="training-mobile-note">On mobile, this opens Skillsoft Percipio when installed. If prompted, enter site name <strong>usaf</strong>.</p>
+        <p class="training-mobile-note">Mobile users: sign in with site name <strong>usaf</strong>. If the app does not open this link, search for <strong>${escapeHtml(course.title)}</strong> in Skillsoft Percipio.</p>
       </div>
     `
     : "";
