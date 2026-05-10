@@ -413,6 +413,12 @@ h1 {
   background: #123d3a;
 }
 
+.training-action {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+}
+
 .training-link {
   display: inline-flex;
   align-items: center;
@@ -432,6 +438,24 @@ h1 {
 
 .training-link:hover {
   filter: brightness(0.92);
+}
+
+.training-mobile-note {
+  display: none;
+  margin: 0;
+  max-width: 320px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.training-mobile-note strong {
+  color: var(--ink);
+}
+
+body[data-catalog-view="mobile"] .training-mobile-note {
+  display: block;
 }
 
 .contents {

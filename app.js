@@ -1767,7 +1767,12 @@ function sectionPage(category, categoryCourses) {
 function coursePage(course, pageNumber) {
   const note = course.note ? `<span class="status-note">${course.note}</span>` : "";
   const trainingLink = course.trainingUrl
-    ? `<a class="training-link" href="${escapeAttr(course.trainingUrl)}" target="_blank" rel="noopener noreferrer">Go to training</a>`
+    ? `
+      <div class="training-action">
+        <a class="training-link" href="${escapeAttr(course.trainingUrl)}" target="_blank" rel="noopener noreferrer">Go to training</a>
+        <p class="training-mobile-note">On mobile, this opens Skillsoft Percipio when installed. If prompted, enter site name <strong>usaf</strong>.</p>
+      </div>
+    `
     : "";
 
   return `
@@ -1842,6 +1847,10 @@ function renderCurrent(direction = "next") {
       event.preventDefault();
       goToCategory(row.dataset.category);
     });
+  });
+
+  document.querySelectorAll(".training-link").forEach((link) => {
+    link.addEventListener("click", handleTrainingLinkClick);
   });
 
   window.setTimeout(() => book.classList.remove("turning-next", "turning-prev"), 380);
@@ -2070,6 +2079,16 @@ function updateViewModeControls() {
   viewButtons.forEach((button) => {
     button.setAttribute("aria-pressed", String(button.dataset.viewMode === viewMode));
   });
+}
+
+function isMobileDevice() {
+  return window.matchMedia("(max-width: 680px)").matches || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+function handleTrainingLinkClick(event) {
+  if (!isMobileDevice()) return;
+  event.preventDefault();
+  window.location.href = event.currentTarget.href;
 }
 
 function updateActiveCategoryFromCurrent() {
