@@ -808,6 +808,8 @@ body[data-catalog-view="mobile"] .training-mobile-card {
 
 body[data-catalog-view="mobile"] .book {
   grid-template-columns: minmax(0, 1fr);
+  touch-action: pan-y;
+  user-select: none;
 }
 
 body[data-catalog-view="mobile"] .book::before,

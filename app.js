@@ -1620,6 +1620,10 @@ let viewMode = getInitialViewMode();
 let activeCategory = "All";
 let expandedCategory = "";
 let searchTerm = "";
+let swipeStartX = 0;
+let swipeStartY = 0;
+let swipeStartTime = 0;
+let swipeTracking = false;
 
 function buildPages() {
   const pages = [
@@ -2139,23 +2143,54 @@ function renderCategoryState() {
   });
 }
 
-prevBtn.addEventListener("click", () => {
-  if (getCurrentIndex() > 0) {
-    setCurrentIndex(getCurrentIndex() - 1);
-    updateActiveCategoryFromCurrent();
-    renderCategories();
-    renderCurrent("prev");
+function goToPrevious(direction = "prev") {
+  if (getCurrentIndex() <= 0) return;
+  setCurrentIndex(getCurrentIndex() - 1);
+  updateActiveCategoryFromCurrent();
+  renderCategories();
+  renderCurrent(direction);
+}
+
+function goToNext(direction = "next") {
+  const maxIndex = viewMode === "mobile" ? pages.length - 1 : spreads.length - 1;
+  if (getCurrentIndex() >= maxIndex) return;
+  setCurrentIndex(getCurrentIndex() + 1);
+  updateActiveCategoryFromCurrent();
+  renderCategories();
+  renderCurrent(direction);
+}
+
+function handleSwipeStart(event) {
+  if (viewMode !== "mobile" || event.pointerType === "mouse") return;
+  const target = event.target;
+  if (target.closest("button, a, input, textarea, select")) return;
+  swipeTracking = true;
+  swipeStartX = event.clientX;
+  swipeStartY = event.clientY;
+  swipeStartTime = Date.now();
+  book.setPointerCapture?.(event.pointerId);
+}
+
+function handleSwipeEnd(event) {
+  if (!swipeTracking) return;
+  swipeTracking = false;
+  const deltaX = event.clientX - swipeStartX;
+  const deltaY = event.clientY - swipeStartY;
+  const elapsed = Date.now() - swipeStartTime;
+  if (elapsed > 900 || Math.abs(deltaX) < 55 || Math.abs(deltaY) > 75 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) return;
+  if (deltaX < 0) {
+    goToNext("next");
+  } else {
+    goToPrevious("prev");
   }
+}
+
+prevBtn.addEventListener("click", () => {
+  goToPrevious("prev");
 });
 
 nextBtn.addEventListener("click", () => {
-  const maxIndex = viewMode === "mobile" ? pages.length - 1 : spreads.length - 1;
-  if (getCurrentIndex() < maxIndex) {
-    setCurrentIndex(getCurrentIndex() + 1);
-    updateActiveCategoryFromCurrent();
-    renderCategories();
-    renderCurrent("next");
-  }
+  goToNext("next");
 });
 
 courseSearch?.addEventListener("input", (event) => {
@@ -2165,6 +2200,12 @@ courseSearch?.addEventListener("input", (event) => {
 
 viewButtons.forEach((button) => {
   button.addEventListener("click", () => setViewMode(button.dataset.viewMode));
+});
+
+book.addEventListener("pointerdown", handleSwipeStart);
+book.addEventListener("pointerup", handleSwipeEnd);
+book.addEventListener("pointercancel", () => {
+  swipeTracking = false;
 });
 
 window.addEventListener("keydown", (event) => {
