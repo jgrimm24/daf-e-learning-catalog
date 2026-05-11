@@ -125,6 +125,26 @@ h1 {
   background: var(--cover);
 }
 
+.view-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.view-note-mobile {
+  display: none;
+}
+
+body[data-catalog-view="mobile"] .view-note-desktop {
+  display: none;
+}
+
+body[data-catalog-view="mobile"] .view-note-mobile {
+  display: block;
+}
+
 .search-panel {
   display: grid;
   gap: 8px;
