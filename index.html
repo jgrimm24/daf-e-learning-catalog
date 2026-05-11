@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DAF E-Learning Catalog</title>
-    <link rel="stylesheet" href="styles.css?v=20260511-3" />
+    <link rel="stylesheet" href="styles.css?v=20260511-4" />
   </head>
   <body>
     <main class="shell">
@@ -23,7 +23,14 @@
                 <button type="button" data-view-mode="mobile">Mobile</button>
               </div>
             </div>
-            <p class="view-note view-note-desktop">Desktop mode includes copyable training links when available.</p>
+            <div class="link-instructions view-note-desktop">
+              <p class="link-instructions-title">NIPR training link process</p>
+              <ol>
+                <li>Select a course with a training link.</li>
+                <li>Click <strong>Copy training link</strong>.</li>
+                <li>Open a new browser tab and paste the link.</li>
+              </ol>
+            </div>
             <p class="view-note view-note-mobile">Training links are hidden on mobile. Switch to Desktop mode to copy training links.</p>
             <div class="search-panel">
               <label class="search-label" for="courseSearch">Search</label>
@@ -59,6 +66,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=20260511-3"></script>
+    <script src="app.js?v=20260511-4"></script>
   </body>
 </html>
