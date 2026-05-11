@@ -440,7 +440,6 @@ body[data-catalog-view="mobile"] .view-note-mobile {
   align-items: center;
 }
 
-.training-link,
 .copy-training-link {
   display: inline-flex;
   align-items: center;
@@ -456,20 +455,11 @@ body[data-catalog-view="mobile"] .view-note-mobile {
   font-weight: 800;
   line-height: 1.15;
   text-decoration: none;
-}
-
-.copy-training-link {
-  color: var(--course-color);
-  background: rgba(255, 252, 244, 0.72);
   cursor: pointer;
 }
 
-.training-link:hover {
+.copy-training-link:hover {
   filter: brightness(0.92);
-}
-
-body[data-catalog-view="mobile"] .training-link {
-  display: none;
 }
 
 body[data-catalog-view="mobile"] .copy-training-link {
