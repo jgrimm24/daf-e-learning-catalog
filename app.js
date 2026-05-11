@@ -1784,7 +1784,6 @@ function coursePage(course, pageNumber) {
         <p class="kicker">${course.category}</p>
         <div class="course-title">
           <h2>${course.title}</h2>
-          <span class="badge">${course.modality}</span>
         </div>
         ${note}
       </header>
@@ -1902,7 +1901,6 @@ function renderCategories() {
                   (course) => `
                     <button class="course-link-button" type="button" data-course-id="${escapeAttr(course.id)}">
                       <span>${escapeHtml(course.title)}</span>
-                      <small>${escapeHtml(course.modality)}</small>
                     </button>
                   `,
                 )
@@ -1992,7 +1990,7 @@ function renderSearchResults() {
       (course) => `
         <button class="search-result-button" type="button" data-course-id="${escapeAttr(course.id)}">
           <span>${escapeHtml(course.title)}</span>
-          <small>${escapeHtml(course.category)} · ${escapeHtml(course.modality)}</small>
+          <small>${escapeHtml(course.category)}</small>
         </button>
       `,
     )

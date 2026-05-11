@@ -644,17 +644,6 @@ body[data-catalog-view="mobile"] .copy-training-link {
   max-width: min(100%, 330px);
 }
 
-.badge {
-  flex: 0 0 auto;
-  border: 1px solid rgba(32, 32, 29, 0.16);
-  border-radius: 999px;
-  padding: 7px 10px;
-  background: rgba(255, 255, 255, 0.46);
-  color: #36322c;
-  font-size: 0.8rem;
-  font-weight: 800;
-}
-
 .description {
   margin: 0;
   color: #433f37;
