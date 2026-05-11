@@ -1770,10 +1770,15 @@ function sectionPage(category, categoryCourses) {
 
 function coursePage(course, pageNumber) {
   const note = course.note ? `<span class="status-note">${course.note}</span>` : "";
+  const copyLinkButton =
+    course.title === "Fire Extinguisher Training"
+      ? `<button class="copy-training-link" type="button" data-copy-link="${escapeAttr(course.trainingUrl)}">Copy training link</button>`
+      : "";
   const trainingLink = course.trainingUrl
     ? `
       <div class="training-action">
         <a class="training-link" href="${escapeAttr(course.trainingUrl)}" target="_blank" rel="noopener noreferrer">Go to training</a>
+        ${copyLinkButton}
       </div>
     `
     : "";
@@ -1854,6 +1859,9 @@ function renderCurrent(direction = "next") {
 
   document.querySelectorAll(".training-link").forEach((link) => {
     link.addEventListener("click", handleTrainingLinkClick);
+  });
+  document.querySelectorAll(".copy-training-link").forEach((button) => {
+    button.addEventListener("click", () => copyTrainingLink(button));
   });
 
   window.setTimeout(() => book.classList.remove("turning-next", "turning-prev"), 380);
@@ -2091,6 +2099,24 @@ function isMobileDevice() {
 function handleTrainingLinkClick(event) {
   if (!isMobileDevice()) return;
   event.preventDefault();
+}
+
+async function copyTrainingLink(button) {
+  const url = button.dataset.copyLink || "";
+  if (!url) return;
+  const idleText = "Copy training link";
+  try {
+    await navigator.clipboard.writeText(url);
+    button.textContent = "Copied link";
+    window.setTimeout(() => {
+      button.textContent = idleText;
+    }, 1800);
+  } catch {
+    button.textContent = "Copy failed";
+    window.setTimeout(() => {
+      button.textContent = idleText;
+    }, 1800);
+  }
 }
 
 function updateActiveCategoryFromCurrent() {
