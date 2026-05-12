@@ -1703,9 +1703,9 @@ function insideCoverPage() {
         <div class="detail"><span>Sections</span><strong>${categoryOrder.length}</strong></div>
         <div class="detail"><span>Published</span><strong>${published}</strong></div>
       </div>
-      <a class="home-link" href="https://usaf.percipio.com/customlibrary/f0598f64-1868-440c-b4c7-96a935742b55/ade75c05-aabc-4c95-b580-8290982d5632" target="_blank" rel="noopener noreferrer">
-        DAF E-Learning Safety Home Page
-      </a>
+      <button class="home-link copy-training-link" type="button" data-copy-link="https://usaf.percipio.com/customlibrary/f0598f64-1868-440c-b4c7-96a935742b55/ade75c05-aabc-4c95-b580-8290982d5632" data-copy-idle="Copy DAF E-Learning Home Page Link">
+        Copy DAF E-Learning Home Page Link
+      </button>
     </div>
   `;
 }
@@ -2183,7 +2183,7 @@ function updateViewModeControls() {
 async function copyTrainingLink(button) {
   const url = button.dataset.copyLink || "";
   if (!url) return;
-  const idleText = "Copy training link";
+  const idleText = button.dataset.copyIdle || "Copy training link";
   try {
     await navigator.clipboard.writeText(url);
     button.textContent = "Copied link";
