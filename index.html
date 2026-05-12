@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DAF E-Learning Catalog</title>
-    <link rel="stylesheet" href="styles.css?v=20260511-5" />
+    <link rel="stylesheet" href="styles.css?v=20260512-1" />
   </head>
   <body>
     <main class="shell">
@@ -63,9 +63,22 @@
             </button>
           </nav>
         </div>
+
+        <aside class="frequency-rail" aria-label="Frequency filters">
+          <p class="rail-label">Frequency</p>
+          <div class="frequency-panel">
+            <label class="filter-label" for="frequencyFilter">Training cycle</label>
+            <select class="filter-select" id="frequencyFilter"></select>
+
+            <label class="filter-label" for="frequencyCategoryFilter">Training area</label>
+            <select class="filter-select" id="frequencyCategoryFilter"></select>
+
+            <div class="frequency-results" id="frequencyResults" aria-live="polite"></div>
+          </div>
+        </aside>
       </section>
     </main>
 
-    <script src="app.js?v=20260511-5"></script>
+    <script src="app.js?v=20260512-1"></script>
   </body>
 </html>

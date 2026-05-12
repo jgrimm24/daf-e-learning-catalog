@@ -1613,6 +1613,9 @@ const disciplineList = document.querySelector("#disciplineList");
 const courseSearch = document.querySelector("#courseSearch");
 const searchResults = document.querySelector("#searchResults");
 const viewButtons = document.querySelectorAll("[data-view-mode]");
+const frequencyFilter = document.querySelector("#frequencyFilter");
+const frequencyCategoryFilter = document.querySelector("#frequencyCategoryFilter");
+const frequencyResults = document.querySelector("#frequencyResults");
 
 let currentSpread = 0;
 let currentPage = 0;
@@ -1620,6 +1623,8 @@ let viewMode = getInitialViewMode();
 let activeCategory = "All";
 let expandedCategory = "";
 let searchTerm = "";
+let activeFrequency = "";
+let activeFrequencyCategory = "All";
 let swipeStartX = 0;
 let swipeStartY = 0;
 let swipeStartTime = 0;
@@ -2001,6 +2006,99 @@ function renderSearchResults() {
   });
 }
 
+function renderFrequencyFilters() {
+  if (!frequencyFilter || !frequencyCategoryFilter || !frequencyResults) return;
+  const groups = getFrequencyGroups();
+  if (!activeFrequency || !groups.some((group) => group.name === activeFrequency)) {
+    activeFrequency = groups[0]?.name || "";
+  }
+
+  frequencyFilter.innerHTML = groups
+    .map((group) => `<option value="${escapeAttr(group.name)}">${escapeHtml(group.name)} (${group.count})</option>`)
+    .join("");
+  frequencyFilter.value = activeFrequency;
+
+  const frequencyCourses = courses.filter((course) => getFrequencyGroup(course) === activeFrequency);
+  const categories = [
+    { name: "All areas", value: "All", count: frequencyCourses.length },
+    ...categoryOrder
+      .map((category) => ({
+        name: category,
+        value: category,
+        count: frequencyCourses.filter((course) => course.category === category).length,
+      }))
+      .filter((category) => category.count > 0),
+  ];
+  if (!categories.some((category) => category.value === activeFrequencyCategory)) {
+    activeFrequencyCategory = "All";
+  }
+
+  frequencyCategoryFilter.innerHTML = categories
+    .map((category) => `<option value="${escapeAttr(category.value)}">${escapeHtml(category.name)} (${category.count})</option>`)
+    .join("");
+  frequencyCategoryFilter.value = activeFrequencyCategory;
+
+  renderFrequencyResults();
+}
+
+function renderFrequencyResults() {
+  if (!frequencyResults) return;
+  const matches = courses
+    .filter((course) => getFrequencyGroup(course) === activeFrequency)
+    .filter((course) => activeFrequencyCategory === "All" || course.category === activeFrequencyCategory)
+    .sort((a, b) => categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category) || a.title.localeCompare(b.title));
+
+  if (!matches.length) {
+    frequencyResults.innerHTML = `<p class="filter-empty">No courses match this filter.</p>`;
+    return;
+  }
+
+  frequencyResults.innerHTML = `
+    <p class="filter-count">${matches.length} course${matches.length === 1 ? "" : "s"}</p>
+    ${matches
+      .map(
+        (course) => `
+          <button class="filter-course-button" type="button" data-course-id="${escapeAttr(course.id)}">
+            <span>${escapeHtml(course.title)}</span>
+            <small>${escapeHtml(course.category)} · ${escapeHtml(course.frequency)}</small>
+          </button>
+        `,
+      )
+      .join("")}
+  `;
+
+  frequencyResults.querySelectorAll("button").forEach((button) => {
+    button.addEventListener("click", () => goToCourse(button.dataset.courseId));
+  });
+}
+
+function getFrequencyGroups() {
+  const groups = new Map();
+  courses.forEach((course) => {
+    const group = getFrequencyGroup(course);
+    groups.set(group, (groups.get(group) || 0) + 1);
+  });
+  return [...groups.entries()]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => frequencyGroupRank(a.name) - frequencyGroupRank(b.name) || a.name.localeCompare(b.name));
+}
+
+function getFrequencyGroup(course) {
+  const frequency = String(course.frequency || "Other").toLowerCase();
+  if (frequency.includes("3 year") || frequency.includes("three year") || frequency.includes("3-year")) return "Three years";
+  if (frequency.includes("annual")) return "Annual training";
+  if (frequency.includes("one time") || frequency.includes("one-time")) return "One time";
+  if (frequency.includes("initial")) return "Initial";
+  if (frequency.includes("before cert")) return "Certification renewal";
+  return course.frequency || "Other";
+}
+
+function frequencyGroupRank(group) {
+  const order = ["Annual training", "Three years", "One time", "Initial", "Certification renewal"];
+  const index = order.indexOf(group);
+  return index === -1 ? 99 : index;
+}
+
 function courseSearchText(course) {
   return [
     course.title,
@@ -2179,6 +2277,17 @@ courseSearch?.addEventListener("input", (event) => {
   renderSearchResults();
 });
 
+frequencyFilter?.addEventListener("change", (event) => {
+  activeFrequency = event.target.value;
+  activeFrequencyCategory = "All";
+  renderFrequencyFilters();
+});
+
+frequencyCategoryFilter?.addEventListener("change", (event) => {
+  activeFrequencyCategory = event.target.value;
+  renderFrequencyResults();
+});
+
 viewButtons.forEach((button) => {
   button.addEventListener("click", () => setViewMode(button.dataset.viewMode));
 });
@@ -2196,5 +2305,6 @@ window.addEventListener("keydown", (event) => {
 
 updateViewModeControls();
 renderCategories();
+renderFrequencyFilters();
 renderDots();
 renderCurrent();
