@@ -259,15 +259,41 @@ h1 {
 }
 
 .selected-link-list {
-  min-height: 122px;
-  max-height: 180px;
-  resize: vertical;
+  display: grid;
+  gap: 5px;
+  max-height: 190px;
+  overflow: auto;
   border: 1px solid rgba(32, 32, 29, 0.14);
   border-radius: 8px;
   padding: 8px;
   color: #2f2c27;
   background: rgba(255, 252, 244, 0.72);
-  font: 0.72rem/1.35 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.selected-link-item {
+  display: grid;
+  gap: 2px;
+  border-bottom: 1px solid rgba(32, 32, 29, 0.08);
+  padding-bottom: 5px;
+}
+
+.selected-link-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.selected-link-item strong {
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+.selected-link-item small,
+.selected-link-more {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 750;
+  line-height: 1.2;
 }
 
 .selected-link-actions {
@@ -276,6 +302,8 @@ h1 {
   gap: 6px;
 }
 
+.download-selected-excel,
+.download-selected-word,
 .copy-selected-links,
 .clear-selected-links {
   border: 1px solid rgba(25, 75, 72, 0.22);
@@ -286,11 +314,13 @@ h1 {
   cursor: pointer;
 }
 
-.copy-selected-links {
+.download-selected-excel,
+.download-selected-word {
   color: #fff9eb;
   background: var(--cover);
 }
 
+.copy-selected-links,
 .clear-selected-links {
   color: #3b3730;
   background: rgba(255, 252, 244, 0.7);

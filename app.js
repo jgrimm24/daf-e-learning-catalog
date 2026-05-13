@@ -2133,16 +2133,13 @@ function renderSelectableCourse(course) {
 }
 
 function renderSelectedTrainingLinks() {
-  const selectedCourses = [...selectedTrainingIds]
-    .map((id) => courses.find((course) => course.id === id))
-    .filter((course) => course?.trainingUrl);
-  const selectedText = selectedCourses.map((course) => `${course.title}: ${course.trainingUrl}`).join("\n");
+  const selectedCourses = getSelectedTrainingCourses();
 
   if (!selectedCourses.length) {
     return `
       <div class="selected-link-builder">
-        <p class="selected-link-title">Selected training links</p>
-        <p class="selected-link-empty">Check courses above to build a copyable list.</p>
+        <p class="selected-link-title">Selected trainings</p>
+        <p class="selected-link-empty">Check courses above to build an exportable list.</p>
       </div>
     `;
   }
@@ -2150,24 +2147,45 @@ function renderSelectedTrainingLinks() {
   return `
     <div class="selected-link-builder">
       <div class="selected-link-heading">
-        <p class="selected-link-title">Selected training links</p>
+        <p class="selected-link-title">Selected trainings</p>
         <span>${selectedCourses.length}</span>
       </div>
-      <textarea class="selected-link-list" readonly>${escapeHtml(selectedText)}</textarea>
+      <div class="selected-link-list">
+        ${selectedCourses
+          .slice(0, 5)
+          .map(
+            (course) => `
+              <div class="selected-link-item">
+                <strong>${escapeHtml(course.title)}</strong>
+                <small>${escapeHtml(getFrequencyGroup(course))} · ${escapeHtml(course.category)}</small>
+              </div>
+            `,
+          )
+          .join("")}
+        ${selectedCourses.length > 5 ? `<p class="selected-link-more">+${selectedCourses.length - 5} more in export</p>` : ""}
+      </div>
       <div class="selected-link-actions">
-        <button class="copy-selected-links" type="button">Copy selected links</button>
+        <button class="download-selected-excel" type="button">Download Excel list</button>
+        <button class="download-selected-word" type="button">Download Word list</button>
+        <button class="copy-selected-links" type="button">Copy plain list</button>
         <button class="clear-selected-links" type="button">Clear</button>
       </div>
     </div>
   `;
 }
 
+function getSelectedTrainingCourses() {
+  return [...selectedTrainingIds]
+    .map((id) => courses.find((course) => course.id === id))
+    .filter((course) => course?.trainingUrl);
+}
+
 function bindSelectedTrainingActions() {
   frequencyResults.querySelector(".copy-selected-links")?.addEventListener("click", async (event) => {
     const button = event.currentTarget;
-    const text = frequencyResults.querySelector(".selected-link-list")?.value || "";
+    const text = generateSelectedTrainingText();
     if (!text) return;
-    const idleText = "Copy selected links";
+    const idleText = "Copy plain list";
     try {
       await navigator.clipboard.writeText(text);
       button.textContent = "Copied list";
@@ -2181,6 +2199,12 @@ function bindSelectedTrainingActions() {
       }, 1800);
     }
   });
+  frequencyResults.querySelector(".download-selected-excel")?.addEventListener("click", () => {
+    downloadSelectedTrainingFile("csv");
+  });
+  frequencyResults.querySelector(".download-selected-word")?.addEventListener("click", () => {
+    downloadSelectedTrainingFile("doc");
+  });
   frequencyResults.querySelector(".clear-selected-links")?.addEventListener("click", () => {
     selectedTrainingIds = new Set();
     frequencyResults.querySelectorAll("[data-select-course]").forEach((input) => {
@@ -2189,6 +2213,84 @@ function bindSelectedTrainingActions() {
     });
     renderSelectedTrainingSection();
   });
+}
+
+function generateSelectedTrainingText() {
+  return getSelectedTrainingCourses()
+    .map((course) => [course.title, getFrequencyGroup(course), course.category, course.frequency, course.trainingUrl].join(" | "))
+    .join("\n");
+}
+
+function downloadSelectedTrainingFile(format) {
+  const selectedCourses = getSelectedTrainingCourses();
+  if (!selectedCourses.length) return;
+  if (format === "doc") {
+    const rows = selectedCourses
+      .map(
+        (course) => `
+          <tr>
+            <td>${escapeHtml(course.title)}</td>
+            <td>${escapeHtml(getFrequencyGroup(course))}</td>
+            <td>${escapeHtml(course.category)}</td>
+            <td>${escapeHtml(course.frequency)}</td>
+            <td><a href="${escapeAttr(course.trainingUrl)}">${escapeHtml(course.trainingUrl)}</a></td>
+          </tr>
+        `,
+      )
+      .join("");
+    const html = `
+      <!doctype html>
+      <html>
+        <head>
+          <meta charset="utf-8" />
+          <title>Selected DAF E-Learning Trainings</title>
+          <style>
+            body { font-family: Arial, sans-serif; color: #222; }
+            h1 { font-size: 20px; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #aaa; padding: 6px; text-align: left; vertical-align: top; }
+            th { background: #e9e3d4; }
+          </style>
+        </head>
+        <body>
+          <h1>Selected DAF E-Learning Trainings</h1>
+          <table>
+            <thead><tr><th>Course</th><th>Training Cycle</th><th>Training Area</th><th>Frequency</th><th>Training Link</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </body>
+      </html>
+    `;
+    downloadBlob(html, "selected-daf-e-learning-trainings.doc", "application/msword");
+    return;
+  }
+
+  const headers = ["Course", "Training Cycle", "Training Area", "Frequency", "Training Link"];
+  const rows = selectedCourses.map((course) => [
+    course.title,
+    getFrequencyGroup(course),
+    course.category,
+    course.frequency,
+    course.trainingUrl,
+  ]);
+  const csv = [headers, ...rows].map((row) => row.map(escapeCsv).join(",")).join("\n");
+  downloadBlob(csv, "selected-daf-e-learning-trainings.csv", "text/csv;charset=utf-8");
+}
+
+function downloadBlob(content, filename, type) {
+  const blob = new Blob([content], { type });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function escapeCsv(value) {
+  return `"${String(value ?? "").replace(/"/g, '""')}"`;
 }
 
 function getFrequencyGroups() {
