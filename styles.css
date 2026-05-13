@@ -129,6 +129,11 @@ h1 {
   font: inherit;
 }
 
+.filter-select:disabled {
+  color: rgba(42, 41, 37, 0.48);
+  background: rgba(255, 252, 244, 0.5);
+}
+
 .frequency-results {
   display: grid;
   gap: 6px;

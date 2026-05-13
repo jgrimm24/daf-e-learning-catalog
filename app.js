@@ -2009,40 +2009,54 @@ function renderSearchResults() {
 function renderFrequencyFilters() {
   if (!frequencyFilter || !frequencyCategoryFilter || !frequencyResults) return;
   const groups = getFrequencyGroups();
-  if (!activeFrequency || !groups.some((group) => group.name === activeFrequency)) {
-    activeFrequency = groups[0]?.name || "";
+  if (activeFrequency && !groups.some((group) => group.name === activeFrequency)) {
+    activeFrequency = "";
   }
 
-  frequencyFilter.innerHTML = groups
-    .map((group) => `<option value="${escapeAttr(group.name)}">${escapeHtml(group.name)} (${group.count})</option>`)
+  frequencyFilter.innerHTML = [
+    `<option value="">Select training cycle</option>`,
+    ...groups.map((group) => `<option value="${escapeAttr(group.name)}">${escapeHtml(group.name)} (${group.count})</option>`),
+  ]
     .join("");
   frequencyFilter.value = activeFrequency;
 
   const frequencyCourses = courses.filter((course) => getFrequencyGroup(course) === activeFrequency);
-  const categories = [
-    { name: "All areas", value: "All", count: frequencyCourses.length },
-    ...categoryOrder
-      .map((category) => ({
-        name: category,
-        value: category,
-        count: frequencyCourses.filter((course) => course.category === category).length,
-      }))
-      .filter((category) => category.count > 0),
-  ];
+  const categories = activeFrequency
+    ? [
+        { name: "All areas", value: "All", count: frequencyCourses.length },
+        ...categoryOrder
+          .map((category) => ({
+            name: category,
+            value: category,
+            count: frequencyCourses.filter((course) => course.category === category).length,
+          }))
+          .filter((category) => category.count > 0),
+      ]
+    : [{ name: "Select cycle first", value: "", count: 0 }];
   if (!categories.some((category) => category.value === activeFrequencyCategory)) {
-    activeFrequencyCategory = "All";
+    activeFrequencyCategory = activeFrequency ? "All" : "";
   }
 
   frequencyCategoryFilter.innerHTML = categories
-    .map((category) => `<option value="${escapeAttr(category.value)}">${escapeHtml(category.name)} (${category.count})</option>`)
+    .map((category) =>
+      category.count
+        ? `<option value="${escapeAttr(category.value)}">${escapeHtml(category.name)} (${category.count})</option>`
+        : `<option value="${escapeAttr(category.value)}">${escapeHtml(category.name)}</option>`,
+    )
     .join("");
   frequencyCategoryFilter.value = activeFrequencyCategory;
+  frequencyCategoryFilter.disabled = !activeFrequency;
 
   renderFrequencyResults();
 }
 
 function renderFrequencyResults() {
   if (!frequencyResults) return;
+  if (!activeFrequency) {
+    frequencyResults.innerHTML = `<p class="filter-empty">Choose a training cycle to show matching courses.</p>`;
+    return;
+  }
+
   const matches = courses
     .filter((course) => getFrequencyGroup(course) === activeFrequency)
     .filter((course) => activeFrequencyCategory === "All" || course.category === activeFrequencyCategory)
@@ -2279,7 +2293,7 @@ courseSearch?.addEventListener("input", (event) => {
 
 frequencyFilter?.addEventListener("change", (event) => {
   activeFrequency = event.target.value;
-  activeFrequencyCategory = "All";
+  activeFrequencyCategory = activeFrequency ? "All" : "";
   renderFrequencyFilters();
 });
 
