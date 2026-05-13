@@ -1,0 +1,39 @@
+1
+00:00:00,000 --> 00:00:08,000
+Welcome to the DAF E-Learning Catalog. This guide helps you find safety, health, environmental, flight, and weapons training available on DAF E-Learning.
+
+2
+00:00:08,000 --> 00:00:17,000
+The catalog works like a book. You can browse by training area, search for a topic, filter by frequency, and copy clean training links for NIPR.
+
+3
+00:00:17,000 --> 00:00:28,000
+Use Browse on the left side to move through major training areas like Occupational Safety, Weapons Safety, Flight Safety, and Public Health.
+
+4
+00:00:28,000 --> 00:00:38,000
+If you know what you are looking for, use Search. You can search by course title, topic, regulation, or requirement.
+
+5
+00:00:38,000 --> 00:00:50,000
+On the right side, use the Frequency filter to find recurring requirements. Choose a training cycle, then choose the training area.
+
+6
+00:00:50,000 --> 00:01:01,000
+The matching courses appear below the filters. Select any course to jump straight to it in the catalog.
+
+7
+00:01:01,000 --> 00:01:16,000
+For NIPR users, training links work best when copied and pasted into a new tab. Click Copy training link, open a new browser tab, and paste the link into the address bar.
+
+8
+00:01:16,000 --> 00:01:27,000
+The DAF E-Learning Safety Home Page link works the same way. Use the copy button, then paste the clean link into a new tab.
+
+9
+00:01:27,000 --> 00:01:39,000
+Mobile mode is for quick reference and page swiping. Training links are hidden on mobile, so use Desktop mode when you need to copy links.
+
+10
+00:01:39,000 --> 00:01:50,000
+When sharing the catalog, use the direct site address: https://jgrimm24.github.io/daf-e-learning-catalog/
