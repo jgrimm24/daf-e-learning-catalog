@@ -1625,6 +1625,7 @@ let expandedCategory = "";
 let searchTerm = "";
 let activeFrequency = "";
 let activeFrequencyCategory = "All";
+let selectedTrainingIds = new Set();
 let swipeStartX = 0;
 let swipeStartY = 0;
 let swipeStartTime = 0;
@@ -2053,7 +2054,11 @@ function renderFrequencyFilters() {
 function renderFrequencyResults() {
   if (!frequencyResults) return;
   if (!activeFrequency) {
-    frequencyResults.innerHTML = `<p class="filter-empty">Choose a training cycle to show matching courses.</p>`;
+    frequencyResults.innerHTML = `
+      <p class="filter-empty">Choose a training cycle to show matching courses.</p>
+      ${renderSelectedTrainingLinks()}
+    `;
+    bindSelectedTrainingActions();
     return;
   }
 
@@ -2063,26 +2068,126 @@ function renderFrequencyResults() {
     .sort((a, b) => categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category) || a.title.localeCompare(b.title));
 
   if (!matches.length) {
-    frequencyResults.innerHTML = `<p class="filter-empty">No courses match this filter.</p>`;
+    frequencyResults.innerHTML = `
+      <p class="filter-empty">No courses match this filter.</p>
+      ${renderSelectedTrainingLinks()}
+    `;
+    bindSelectedTrainingActions();
     return;
   }
 
   frequencyResults.innerHTML = `
     <p class="filter-count">${matches.length} course${matches.length === 1 ? "" : "s"}</p>
+    ${renderSelectedTrainingLinks()}
     ${matches
       .map(
-        (course) => `
-          <button class="filter-course-button" type="button" data-course-id="${escapeAttr(course.id)}">
-            <span>${escapeHtml(course.title)}</span>
-            <small>${escapeHtml(course.category)} · ${escapeHtml(course.frequency)}</small>
-          </button>
-        `,
+        (course) => renderSelectableCourse(course),
       )
       .join("")}
   `;
 
-  frequencyResults.querySelectorAll("button").forEach((button) => {
+  frequencyResults.querySelectorAll("[data-course-id]").forEach((button) => {
     button.addEventListener("click", () => goToCourse(button.dataset.courseId));
+  });
+  frequencyResults.querySelectorAll("[data-select-course]").forEach((input) => {
+    input.addEventListener("change", () => {
+      if (input.checked) {
+        selectedTrainingIds.add(input.dataset.selectCourse);
+      } else {
+        selectedTrainingIds.delete(input.dataset.selectCourse);
+      }
+      input.closest(".filter-course-row")?.classList.toggle("is-selected", input.checked);
+      renderSelectedTrainingSection();
+    });
+  });
+  bindSelectedTrainingActions();
+}
+
+function renderSelectedTrainingSection() {
+  const builder = frequencyResults.querySelector(".selected-link-builder");
+  if (!builder) return;
+  builder.outerHTML = renderSelectedTrainingLinks();
+  bindSelectedTrainingActions();
+}
+
+function renderSelectableCourse(course) {
+  const selected = selectedTrainingIds.has(course.id);
+  const disabled = !course.trainingUrl;
+  return `
+    <div class="filter-course-row${selected ? " is-selected" : ""}">
+      <label class="filter-course-option">
+        <input
+          type="checkbox"
+          data-select-course="${escapeAttr(course.id)}"
+          ${selected ? "checked" : ""}
+          ${disabled ? "disabled" : ""}
+        />
+        <span class="filter-course-copy">
+          <span>${escapeHtml(course.title)}</span>
+          <small>${escapeHtml(course.category)} · ${escapeHtml(course.frequency)}${disabled ? " · No link available" : ""}</small>
+        </span>
+      </label>
+      <button class="filter-jump-button" type="button" data-course-id="${escapeAttr(course.id)}">View</button>
+    </div>
+  `;
+}
+
+function renderSelectedTrainingLinks() {
+  const selectedCourses = [...selectedTrainingIds]
+    .map((id) => courses.find((course) => course.id === id))
+    .filter((course) => course?.trainingUrl);
+  const selectedText = selectedCourses.map((course) => `${course.title}: ${course.trainingUrl}`).join("\n");
+
+  if (!selectedCourses.length) {
+    return `
+      <div class="selected-link-builder">
+        <p class="selected-link-title">Selected training links</p>
+        <p class="selected-link-empty">Check courses above to build a copyable list.</p>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="selected-link-builder">
+      <div class="selected-link-heading">
+        <p class="selected-link-title">Selected training links</p>
+        <span>${selectedCourses.length}</span>
+      </div>
+      <textarea class="selected-link-list" readonly>${escapeHtml(selectedText)}</textarea>
+      <div class="selected-link-actions">
+        <button class="copy-selected-links" type="button">Copy selected links</button>
+        <button class="clear-selected-links" type="button">Clear</button>
+      </div>
+    </div>
+  `;
+}
+
+function bindSelectedTrainingActions() {
+  frequencyResults.querySelector(".copy-selected-links")?.addEventListener("click", async (event) => {
+    const button = event.currentTarget;
+    const text = frequencyResults.querySelector(".selected-link-list")?.value || "";
+    if (!text) return;
+    const idleText = "Copy selected links";
+    try {
+      await navigator.clipboard.writeText(text);
+      button.textContent = "Copied list";
+      window.setTimeout(() => {
+        button.textContent = idleText;
+      }, 1800);
+    } catch {
+      button.textContent = "Copy failed";
+      window.setTimeout(() => {
+        button.textContent = idleText;
+      }, 1800);
+    }
+  });
+  frequencyResults.querySelector(".clear-selected-links")?.addEventListener("click", () => {
+    selectedTrainingIds = new Set();
+    frequencyResults.querySelectorAll("[data-select-course]").forEach((input) => {
+      input.checked = false;
+      input.closest(".filter-course-row")?.classList.remove("is-selected");
+    });
+    renderSelectedTrainingSection();
   });
 }
 
