@@ -1623,7 +1623,7 @@ let viewMode = getInitialViewMode();
 let activeCategory = "All";
 let expandedCategory = "";
 let searchTerm = "";
-let activeFrequency = "";
+let activeFrequency = "All";
 let activeFrequencyCategory = "All";
 let selectedTrainingIds = new Set();
 let swipeStartX = 0;
@@ -1780,6 +1780,9 @@ function coursePage(course, pageNumber) {
     ? `
       <div class="training-action">
         <button class="copy-training-link" type="button" data-copy-link="${escapeAttr(course.trainingUrl)}">Copy training link</button>
+        <button class="toggle-training-list" type="button" data-list-course="${escapeAttr(course.id)}">
+          Add to training list
+        </button>
       </div>
     `
     : "";
@@ -1860,6 +1863,13 @@ function renderCurrent(direction = "next") {
   document.querySelectorAll(".copy-training-link").forEach((button) => {
     button.addEventListener("click", () => copyTrainingLink(button));
   });
+  document.querySelectorAll(".toggle-training-list").forEach((button) => {
+    button.addEventListener("click", () => {
+      const courseId = button.dataset.listCourse;
+      setTrainingListSelection(courseId, !selectedTrainingIds.has(courseId));
+    });
+  });
+  syncAllTrainingListControls();
 
   window.setTimeout(() => book.classList.remove("turning-next", "turning-prev"), 380);
 }
@@ -2010,32 +2020,30 @@ function renderSearchResults() {
 function renderFrequencyFilters() {
   if (!frequencyFilter || !frequencyCategoryFilter || !frequencyResults) return;
   const groups = getFrequencyGroups();
-  if (activeFrequency && !groups.some((group) => group.name === activeFrequency)) {
-    activeFrequency = "";
+  if (activeFrequency !== "All" && !groups.some((group) => group.name === activeFrequency)) {
+    activeFrequency = "All";
   }
 
   frequencyFilter.innerHTML = [
-    `<option value="">Select training cycle</option>`,
+    `<option value="All">All training cycles (${courses.length})</option>`,
     ...groups.map((group) => `<option value="${escapeAttr(group.name)}">${escapeHtml(group.name)} (${group.count})</option>`),
   ]
     .join("");
   frequencyFilter.value = activeFrequency;
 
-  const frequencyCourses = courses.filter((course) => getFrequencyGroup(course) === activeFrequency);
-  const categories = activeFrequency
-    ? [
-        { name: "All areas", value: "All", count: frequencyCourses.length },
-        ...categoryOrder
-          .map((category) => ({
-            name: category,
-            value: category,
-            count: frequencyCourses.filter((course) => course.category === category).length,
-          }))
-          .filter((category) => category.count > 0),
-      ]
-    : [{ name: "Select cycle first", value: "", count: 0 }];
+  const frequencyCourses = courses.filter((course) => courseMatchesFrequency(course));
+  const categories = [
+    { name: "All areas", value: "All", count: frequencyCourses.length },
+    ...categoryOrder
+      .map((category) => ({
+        name: category,
+        value: category,
+        count: frequencyCourses.filter((course) => course.category === category).length,
+      }))
+      .filter((category) => category.count > 0),
+  ];
   if (!categories.some((category) => category.value === activeFrequencyCategory)) {
-    activeFrequencyCategory = activeFrequency ? "All" : "";
+    activeFrequencyCategory = "All";
   }
 
   frequencyCategoryFilter.innerHTML = categories
@@ -2046,24 +2054,15 @@ function renderFrequencyFilters() {
     )
     .join("");
   frequencyCategoryFilter.value = activeFrequencyCategory;
-  frequencyCategoryFilter.disabled = !activeFrequency;
+  frequencyCategoryFilter.disabled = false;
 
   renderFrequencyResults();
 }
 
 function renderFrequencyResults() {
   if (!frequencyResults) return;
-  if (!activeFrequency) {
-    frequencyResults.innerHTML = `
-      <p class="filter-empty">Choose a training cycle to show matching courses.</p>
-      ${renderSelectedTrainingLinks()}
-    `;
-    bindSelectedTrainingActions();
-    return;
-  }
-
   const matches = courses
-    .filter((course) => getFrequencyGroup(course) === activeFrequency)
+    .filter((course) => courseMatchesFrequency(course))
     .filter((course) => activeFrequencyCategory === "All" || course.category === activeFrequencyCategory)
     .sort((a, b) => categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category) || a.title.localeCompare(b.title));
 
@@ -2091,16 +2090,47 @@ function renderFrequencyResults() {
   });
   frequencyResults.querySelectorAll("[data-select-course]").forEach((input) => {
     input.addEventListener("change", () => {
-      if (input.checked) {
-        selectedTrainingIds.add(input.dataset.selectCourse);
-      } else {
-        selectedTrainingIds.delete(input.dataset.selectCourse);
-      }
-      input.closest(".filter-course-row")?.classList.toggle("is-selected", input.checked);
-      renderSelectedTrainingSection();
+      setTrainingListSelection(input.dataset.selectCourse, input.checked);
     });
   });
   bindSelectedTrainingActions();
+}
+
+function courseMatchesFrequency(course) {
+  return activeFrequency === "All" || getFrequencyGroup(course) === activeFrequency;
+}
+
+function setTrainingListSelection(courseId, selected) {
+  if (!courseId) return;
+  if (selected) {
+    selectedTrainingIds.add(courseId);
+  } else {
+    selectedTrainingIds.delete(courseId);
+  }
+  syncTrainingListControls(courseId);
+  renderSelectedTrainingSection();
+}
+
+function syncTrainingListControls(courseId) {
+  document.querySelectorAll("[data-select-course]").forEach((input) => {
+    if (input.dataset.selectCourse !== courseId) return;
+    input.checked = selectedTrainingIds.has(courseId);
+    input.closest(".filter-course-row")?.classList.toggle("is-selected", input.checked);
+  });
+  document.querySelectorAll("[data-list-course]").forEach((button) => {
+    if (button.dataset.listCourse !== courseId) return;
+    button.textContent = selectedTrainingIds.has(courseId) ? "Remove from training list" : "Add to training list";
+  });
+}
+
+function syncAllTrainingListControls() {
+  document.querySelectorAll("[data-select-course]").forEach((input) => {
+    input.checked = selectedTrainingIds.has(input.dataset.selectCourse);
+    input.closest(".filter-course-row")?.classList.toggle("is-selected", input.checked);
+  });
+  document.querySelectorAll("[data-list-course]").forEach((button) => {
+    button.textContent = selectedTrainingIds.has(button.dataset.listCourse) ? "Remove from training list" : "Add to training list";
+  });
 }
 
 function renderSelectedTrainingSection() {
@@ -2139,7 +2169,7 @@ function renderSelectedTrainingLinks() {
     return `
       <div class="selected-link-builder">
         <p class="selected-link-title">Selected trainings</p>
-        <p class="selected-link-empty">Check courses above to build an exportable list.</p>
+        <p class="selected-link-empty">Check courses above or use Add to training list on a course page. Selections stay saved while changing filters.</p>
       </div>
     `;
   }
@@ -2207,9 +2237,12 @@ function bindSelectedTrainingActions() {
   });
   frequencyResults.querySelector(".clear-selected-links")?.addEventListener("click", () => {
     selectedTrainingIds = new Set();
-    frequencyResults.querySelectorAll("[data-select-course]").forEach((input) => {
+    document.querySelectorAll("[data-select-course]").forEach((input) => {
       input.checked = false;
       input.closest(".filter-course-row")?.classList.remove("is-selected");
+    });
+    document.querySelectorAll("[data-list-course]").forEach((button) => {
+      button.textContent = "Add to training list";
     });
     renderSelectedTrainingSection();
   });
@@ -2500,7 +2533,7 @@ courseSearch?.addEventListener("input", (event) => {
 
 frequencyFilter?.addEventListener("change", (event) => {
   activeFrequency = event.target.value;
-  activeFrequencyCategory = activeFrequency ? "All" : "";
+  activeFrequencyCategory = "All";
   renderFrequencyFilters();
 });
 

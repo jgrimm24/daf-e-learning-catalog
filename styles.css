@@ -705,7 +705,8 @@ body[data-catalog-view="mobile"] .view-note-mobile {
   align-items: center;
 }
 
-.copy-training-link {
+.copy-training-link,
+.toggle-training-list {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -723,11 +724,18 @@ body[data-catalog-view="mobile"] .view-note-mobile {
   cursor: pointer;
 }
 
-.copy-training-link:hover {
+.toggle-training-list {
+  color: var(--course-color);
+  background: rgba(255, 252, 244, 0.82);
+}
+
+.copy-training-link:hover,
+.toggle-training-list:hover {
   filter: brightness(0.92);
 }
 
-body[data-catalog-view="mobile"] .copy-training-link {
+body[data-catalog-view="mobile"] .copy-training-link,
+body[data-catalog-view="mobile"] .toggle-training-list {
   display: none;
 }
 
