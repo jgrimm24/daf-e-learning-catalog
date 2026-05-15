@@ -717,6 +717,17 @@ body[data-catalog-view="mobile"] .view-note-mobile {
   background: #123d3a;
 }
 
+.home-link.copy-training-link {
+  border-color: rgba(25, 75, 72, 0.24);
+  color: #fff9eb;
+  background: var(--cover);
+}
+
+.home-link.copy-training-link:hover {
+  background: #123d3a;
+  filter: none;
+}
+
 .training-action {
   display: flex;
   flex-wrap: wrap;
