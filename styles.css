@@ -580,6 +580,7 @@ body[data-catalog-view="mobile"] .view-note-mobile {
 }
 
 .book-area {
+  position: relative;
   display: grid;
   gap: 18px;
 }
@@ -1023,12 +1024,15 @@ body[data-catalog-view="mobile"] .toggle-training-list {
 }
 
 .page-controls {
-  display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) 48px;
-  gap: 14px;
+  position: absolute;
+  top: 20px;
+  right: -24px;
+  left: -24px;
+  z-index: 8;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  width: min(680px, 100%);
-  justify-self: center;
+  pointer-events: none;
 }
 
 .icon-button {
@@ -1041,6 +1045,7 @@ body[data-catalog-view="mobile"] .toggle-training-list {
   color: white;
   background: var(--ink);
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .icon-button:disabled {
@@ -1052,28 +1057,6 @@ body[data-catalog-view="mobile"] .toggle-training-list {
   transform: translateY(-1px);
   font-size: 2rem;
   line-height: 1;
-}
-
-.dots {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
-  max-height: 34px;
-  overflow: hidden;
-}
-
-.dot {
-  width: 7px;
-  height: 7px;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(32, 32, 29, 0.25);
-  cursor: pointer;
-}
-
-.dot[aria-current="true"] {
-  background: var(--cover);
 }
 
 body[data-catalog-view="mobile"] .book {
@@ -1092,7 +1075,8 @@ body[data-catalog-view="mobile"] .page-right {
 }
 
 body[data-catalog-view="mobile"] .page-controls {
-  width: min(520px, 100%);
+  right: -10px;
+  left: -10px;
 }
 
 body[data-catalog-view="mobile"] .frequency-rail {

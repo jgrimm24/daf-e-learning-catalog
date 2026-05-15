@@ -1850,10 +1850,6 @@ function renderCurrent(direction = "next") {
     nextBtn.disabled = currentSpread === spreads.length - 1;
   }
 
-  document.querySelectorAll(".dot").forEach((dot, index) => {
-    dot.setAttribute("aria-current", String(index === getCurrentIndex()));
-  });
-
   document.querySelectorAll(".contents-row").forEach((row) => {
     row.addEventListener("click", (event) => {
       event.preventDefault();
@@ -1876,6 +1872,7 @@ function renderCurrent(direction = "next") {
 }
 
 function renderDots() {
+  if (!dots) return;
   const items = viewMode === "mobile" ? pages : spreads;
   const label = viewMode === "mobile" ? "page" : "spread";
   dots.innerHTML = items
