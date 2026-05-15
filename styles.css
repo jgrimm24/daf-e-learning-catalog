@@ -1026,8 +1026,8 @@ body[data-catalog-view="mobile"] .toggle-training-list {
 .page-controls {
   position: absolute;
   top: 20px;
-  right: -24px;
-  left: -24px;
+  right: -14px;
+  left: -14px;
   z-index: 8;
   display: flex;
   justify-content: space-between;
@@ -1038,8 +1038,8 @@ body[data-catalog-view="mobile"] .toggle-training-list {
 .icon-button {
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
+  width: 38px;
+  height: 38px;
   border: 0;
   border-radius: 50%;
   color: white;
@@ -1055,7 +1055,7 @@ body[data-catalog-view="mobile"] .toggle-training-list {
 
 .icon-button span {
   transform: translateY(-1px);
-  font-size: 2rem;
+  font-size: 1.55rem;
   line-height: 1;
 }
 
