@@ -2177,7 +2177,6 @@ function renderSelectedTrainingLinks() {
       </div>
       <div class="selected-link-list">
         ${selectedCourses
-          .slice(0, 5)
           .map(
             (course) => `
               <div class="selected-link-item">
@@ -2187,7 +2186,6 @@ function renderSelectedTrainingLinks() {
             `,
           )
           .join("")}
-        ${selectedCourses.length > 5 ? `<p class="selected-link-more">+${selectedCourses.length - 5} more in export</p>` : ""}
       </div>
       <div class="selected-link-actions">
         <button class="download-selected-excel" type="button">Download Excel list</button>
