@@ -1616,6 +1616,7 @@ const viewButtons = document.querySelectorAll("[data-view-mode]");
 const frequencyFilter = document.querySelector("#frequencyFilter");
 const frequencyCategoryFilter = document.querySelector("#frequencyCategoryFilter");
 const frequencyResults = document.querySelector("#frequencyResults");
+const selectedTrainingPanel = document.querySelector("#selectedTrainingPanel");
 
 let currentSpread = 0;
 let currentPage = 0;
@@ -2067,17 +2068,12 @@ function renderFrequencyResults() {
     .sort((a, b) => categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category) || a.title.localeCompare(b.title));
 
   if (!matches.length) {
-    frequencyResults.innerHTML = `
-      <p class="filter-empty">No courses match this filter.</p>
-      ${renderSelectedTrainingLinks()}
-    `;
-    bindSelectedTrainingActions();
+    frequencyResults.innerHTML = `<p class="filter-empty">No courses match this filter.</p>`;
     return;
   }
 
   frequencyResults.innerHTML = `
     <p class="filter-count">${matches.length} course${matches.length === 1 ? "" : "s"}</p>
-    ${renderSelectedTrainingLinks()}
     ${matches
       .map(
         (course) => renderSelectableCourse(course),
@@ -2134,9 +2130,8 @@ function syncAllTrainingListControls() {
 }
 
 function renderSelectedTrainingSection() {
-  const builder = frequencyResults.querySelector(".selected-link-builder");
-  if (!builder) return;
-  builder.outerHTML = renderSelectedTrainingLinks();
+  if (!selectedTrainingPanel) return;
+  selectedTrainingPanel.innerHTML = renderSelectedTrainingLinks();
   bindSelectedTrainingActions();
 }
 
@@ -2211,7 +2206,7 @@ function getSelectedTrainingCourses() {
 }
 
 function bindSelectedTrainingActions() {
-  frequencyResults.querySelector(".copy-selected-links")?.addEventListener("click", async (event) => {
+  selectedTrainingPanel?.querySelector(".copy-selected-links")?.addEventListener("click", async (event) => {
     const button = event.currentTarget;
     const text = generateSelectedTrainingText();
     if (!text) return;
@@ -2229,13 +2224,13 @@ function bindSelectedTrainingActions() {
       }, 1800);
     }
   });
-  frequencyResults.querySelector(".download-selected-excel")?.addEventListener("click", () => {
+  selectedTrainingPanel?.querySelector(".download-selected-excel")?.addEventListener("click", () => {
     downloadSelectedTrainingFile("csv");
   });
-  frequencyResults.querySelector(".download-selected-word")?.addEventListener("click", () => {
+  selectedTrainingPanel?.querySelector(".download-selected-word")?.addEventListener("click", () => {
     downloadSelectedTrainingFile("doc");
   });
-  frequencyResults.querySelector(".clear-selected-links")?.addEventListener("click", () => {
+  selectedTrainingPanel?.querySelector(".clear-selected-links")?.addEventListener("click", () => {
     selectedTrainingIds = new Set();
     document.querySelectorAll("[data-select-course]").forEach((input) => {
       input.checked = false;
@@ -2560,5 +2555,6 @@ window.addEventListener("keydown", (event) => {
 updateViewModeControls();
 renderCategories();
 renderFrequencyFilters();
+renderSelectedTrainingSection();
 renderDots();
 renderCurrent();
