@@ -966,23 +966,6 @@ const courses = [
     "color": "#285d8c"
   },
   {
-    "id": "course-54",
-    "title": "Integrated Risk and Readiness Phase 2",
-    "category": "Other",
-    "status": "Published",
-    "visible": "Yes",
-    "modality": "Course",
-    "note": "",
-    "frequency": "As directed",
-    "regulation": "Local or course-specific guidance",
-    "description": "Course details are maintained by the owning functional area.",
-    "trainingUrl": "",
-    "standards": [
-      "Local guidance"
-    ],
-    "color": "#5d625c"
-  },
-  {
     "id": "course-77",
     "title": "Privilege Safety Brief",
     "category": "Other",
