@@ -95,7 +95,7 @@ const courses = [
     "frequency": "Annual",
     "regulation": "48-137, 29 CFR 1910.134",
     "description": "Bioenvironmental; The proper use of an approved respirator will protect the wearer from toxic levels of airborne chemicals and hazardous materials. Personnel are less likely to experience injury or illness from chemical, biological, or radiological hazards when they wear approved respirators correctly, and are trained in their use, care, and maintenance. Individuals who require the use of a respirator must be medically cleared by a MDG Provider, enrolle...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/8c10c93c-10e3-4b70-a2d8-492d5a95ea3a/landing",
     "standards": [
       "OSHA"
     ],
@@ -112,7 +112,7 @@ const courses = [
     "frequency": "Annual",
     "regulation": "48-137, 29 CFR 1910.134",
     "description": "Bioenvironmental; This course is conducted at local level. The proper use of an approved respirator will protect the wearer from toxic levels of airborne chemicals and hazardous materials. Personnel are less likely to experience injury or illness from chemical, biological, or radiological hazards when they wear approved respirators correctly, and are trained in their use, care, and maintenance. Individuals who require the use of a respirator must be med...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/1e6cf70f-3119-46e2-b371-41e429977ef2/landing",
     "standards": [
       "OSHA"
     ],
@@ -129,7 +129,7 @@ const courses = [
     "frequency": "One Time",
     "regulation": "AFI 48-137 para 3.1.8.",
     "description": "Bioenvironmental; This course is conducted at local level. This training covers initial training for supervisors of areas with respiratory protection. A qualified BE shall certify completion of the training by a worksite/shop specific supervisor and must be documented in Dafe-L. Contact Host BE Office for site specific training and requirements. 28April26 Course POC: For questions regarding this course, contact NGB.SE.SEG.Org@us.af.mil",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/c98b4151-e342-4620-9a7c-ed8212c537c1/landing",
     "standards": [
       "Local guidance"
     ],
@@ -248,7 +248,7 @@ const courses = [
     "frequency": "Annual",
     "regulation": "29 CFR 112.7, Clean Water Act",
     "description": "Environmental; This course is conducted at local level. This training provides basic spill response procedures to personnel who work with, or handle POL. Training materials provided by the Environmental Management Office. Required of Command Post personnel, Spill Responders, and oil-handling personnel. Contact Host Environmental Office for site specific training and requirements 28April26 Course POC: For questions regarding this course, contact NGB.SE.S...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/1fcd8a81-01cb-414b-adad-18c1912ab808/landing",
     "standards": [
       "OSHA"
     ],
@@ -265,7 +265,7 @@ const courses = [
     "frequency": "Annual",
     "regulation": "Storm Water Pollution Prevention Plan, 40 CFR Part 122 Subpar B 122.34(b)(6)(i)",
     "description": "Environmental; This course is available at a local level. This training provides education regarding the stormwater program. Required of personnel that handle POL and/or hazardous substances that have the potential to contaminate stormwater runoff at the installation. Contact Host Environmental Office for site specific training and requirements 28April2026 Course POC: For questions regarding this course, contact NGB.SE.SEG.Org@us.af.mil",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/014372e4-e406-465b-8478-6581f08714f1/landing",
     "standards": [
       "Local guidance"
     ],
@@ -282,7 +282,7 @@ const courses = [
     "frequency": "Initial Appointment",
     "regulation": "DAFI 32-7001, 4.3.2.3.",
     "description": "Environmental; This course is available through Air Force Institute of Technology (AFIT). This training provides information on how Unit Environmental Coordinators (UECs) act as a team with base environmental management within the framework of an Environmental Management System (EMS). Required for appointed UECs. UEC training is available from AFIT’s Civil Engineer School, AFCEC, ANGRC, or other resources as provided by the installation Contact Host Env...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/89f4b249-2d46-4f55-b980-52ffca5b94a9/landing",
     "standards": [
       "Local guidance"
     ],
@@ -299,7 +299,7 @@ const courses = [
     "frequency": "Annual",
     "regulation": "32-7042",
     "description": "Environmental; This course is available at a local level. This training provides education on proper handling and emergency procedures of universal waste. Required of building managers and anyone who handles or has responsibility for managing universal waste. Contact Host Environmental Office for site specific training and requirements 28April2026 Course POC: For questions regarding this course, contact NGB.SE.SEG.Org@us.af.mil",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/963b0f44-e767-42f8-ad26-2cc9f905943b/landing",
     "standards": [
       "Local guidance"
     ],
@@ -316,7 +316,7 @@ const courses = [
     "frequency": "Annual",
     "regulation": "IAW 29 CFR 1910 Sub L, NFPA 101",
     "description": "Non-Critical Safety; This course is conducted at local level. This course provides understanding of the 300lb Halon flight line fire extinguishers and proper procedures for acting as a fire guard during aircraft startup. It will be provided at the shop level in the shop annual safety briefing. Contact host Wing Safety for site specific training and requirements. 20April26 Course POC: For questions regarding this course, contact NGB.SE.SEG.Org@us.af.mil",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/9487fbc8-a32c-4a6d-8da1-06ad2f5bf61e/landing",
     "standards": [
       "OSHA",
       "NFPA"
@@ -420,7 +420,7 @@ const courses = [
     "frequency": "As directed",
     "regulation": "Local or course-specific guidance",
     "description": "Course details are maintained by the owning functional area.",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/af886525-5283-424a-ac5f-248d673e30df/landing",
     "standards": [
       "Local guidance"
     ],
@@ -437,7 +437,7 @@ const courses = [
     "frequency": "Annually",
     "regulation": "91-203",
     "description": "Critical Safety; Arc Flash Protection Training shall be provided for all Air Force personnel (military and civilian) that are exposed to energized parts greater than 50 volts. Training will include protective clothing required, if any, and shall be based on the procedures outlined in UFC 3-560-01 and NFPA 70E. This course is conducted at local level. There are no online modules or CBT's to complete for this course. This course is designed to document th...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/55f889a3-a785-4ab9-b467-41151ee2eaf1/landing",
     "standards": [
       "DAFMAN 91-203",
       "NFPA"
@@ -787,7 +787,7 @@ const courses = [
     "frequency": "One Time",
     "regulation": "91-203, CFR 1926.552",
     "description": "Non-Critical Safety; This course is conducted at local level. The operator will be familiar with all operating controls of the hoist and be instructed in the operations to be performed. Training shall include the warnings on the hoist, manufacturer‘s instructions, and all requirements within the regulations. Supervisors will receive the training material from Wing Safety and will then train their section members. Frequency of the training will be one-ti...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/e0ba05d6-0301-4cc7-af79-bba027dd686b/landing",
     "standards": [
       "DAFMAN 91-203",
       "OSHA"
@@ -805,7 +805,7 @@ const courses = [
     "frequency": "3 Year",
     "regulation": "24-301, 29 CFR 1910.178",
     "description": "Critical Safety; This course is conducted at local level. After completion of initial training and certification, a qualified instructor shall evaluate each operator at least once every three years and provide refresher training in relevant topics anytime there is reason to believe there is a need. The evaluation shall include, but not be limited to, changes in types of equipment in use; change in operating environment; direct observation of performance...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/3d07cc3c-62c4-45b3-a473-1974d6d037b1/landing",
     "standards": [
       "OSHA"
     ],
@@ -822,7 +822,7 @@ const courses = [
     "frequency": "Initial + 3 Year Eval",
     "regulation": "29 CFR 1910.178",
     "description": "Critical Safety; All personnel are required to complete Power Industrial Truck Initial Training from the Safety Office before operating any power industrial truck. This mandatory course is conducted in-person only; there are no online modules or computer-based training (CBT) components. Upon completion, Unit Training Managers (UTMs) and Unit Safety Representatives (USRs) should ensure the training is properly documented. Slides can be review but class w...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/bbde34fe-cb26-4bbc-b0d4-a63e694bfec1/landing",
     "standards": [
       "OSHA"
     ],
@@ -839,7 +839,7 @@ const courses = [
     "frequency": "3 Year",
     "regulation": "24-301, 29 CFR 1910.178",
     "description": "Critical Safety; This course is conducted at local level. After completion of initial training and certification, a qualified instructor shall evaluate each operator at least once every three years and provide refresher training in relevant topics anytime there is reason to believe there is a need. The evaluation shall include, but not be limited to, changes in types of equipment in use; change in operating environment; direct observation of performance...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/cfaad1d4-3b50-4ad5-90ac-30fdabfa85e4/landing",
     "standards": [
       "OSHA"
     ],
@@ -856,7 +856,7 @@ const courses = [
     "frequency": "3 Year",
     "regulation": "24-301, 29 CFR 1910.178",
     "description": "Critical Safety; This course is conducted at local level. After completion of initial training and certification, a qualified instructor shall evaluate each operator at least once every three years and provide refresher training in relevant topics anytime there is reason to believe there is a need. The evaluation shall include, but not be limited to, changes in types of equipment in use; change in operating environment; direct observation of performance...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/29ae0f0c-3fb9-43ca-ad85-e0d28b6535d7/landing",
     "standards": [
       "OSHA"
     ],
@@ -873,7 +873,7 @@ const courses = [
     "frequency": "3 Year",
     "regulation": "24-301, 29 CFR 1910.178",
     "description": "Critical Safety; This course is conducted at local level. After completion of initial training and certification, a qualified instructor shall evaluate each operator at least once every three years and provide refresher training in relevant topics anytime there is reason to believe there is a need. The evaluation shall include, but not be limited to, changes in types of equipment in use; change in operating environment; direct observation of performance...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/301a9d8e-1874-4c22-8e27-52f2a8faa89f/landing",
     "standards": [
       "OSHA"
     ],
@@ -890,7 +890,7 @@ const courses = [
     "frequency": "3 Year",
     "regulation": "24-301, 29 CFR 1910.178",
     "description": "Critical Safety; This course is conducted at local level. After completion of initial training and certification, a qualified instructor shall evaluate each operator at least once every three years and provide refresher training in relevant topics anytime there is reason to believe there is a need. The evaluation shall include, but not be limited to, changes in types of equipment in use; change in operating environment; direct observation of performance...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/6f90d36e-e98c-4843-b0c2-992796b798af/landing",
     "standards": [
       "OSHA"
     ],
@@ -907,7 +907,7 @@ const courses = [
     "frequency": "3 Year",
     "regulation": "24-301, 29 CFR 1910.178",
     "description": "Critical Safety; This course is conducted at local level. After completion of initial training and certification, a qualified instructor shall evaluate each operator at least once every three years and provide refresher training in relevant topics anytime there is reason to believe there is a need. The evaluation shall include, but not be limited to, changes in types of equipment in use; change in operating environment; direct observation of performance...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/2b7627d5-249d-4718-aa92-d8f19f000df6/landing",
     "standards": [
       "OSHA"
     ],
@@ -924,7 +924,7 @@ const courses = [
     "frequency": "One Time",
     "regulation": "91-202",
     "description": "Non-Critical Safety; This course is conducted at local level. Supervisors are the key to the safety program because they are responsible for maintaining a safe and healthful environment. The Supervisor Safety Training Course trains supervisors in management skills needed to implement safety policies and programs. The course provides basic skills for fostering a workplace where hazards are identified and risks managed. It also develops skills to recogniz...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/1513a539-7fcb-4a3c-8d0c-00df7284a7a6/landing",
     "standards": [
       "Local guidance"
     ],
@@ -941,7 +941,7 @@ const courses = [
     "frequency": "One Time",
     "regulation": "91-202 para 2.2.",
     "description": "This course is conducted at local level. After completing the Unit Safety Representative CBT's, the unit safety representative local program brief has to be complete by Wing safety. This course is designed for all USRs to understand their specific responsibilities assigned to them from the safety office. Contact host Wing Safety for site specific training and requirements. 28Aprilr2026 Course POC: For questions regarding this course, contact NGB.SE.SEG....",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/80b0555c-9821-4a46-8763-ad8a9ca3741b/landing",
     "standards": [
       "Local guidance"
     ],
@@ -958,7 +958,7 @@ const courses = [
     "frequency": "3 Year",
     "regulation": "DAFMAN 91-203, 29 CFR 1926.454, 29 CFR 1910.68, 29 CFR 1910.67",
     "description": "Critical Safety; This course is conducted at local level. After completion of initial training and certification, a qualified instructor shall evaluate each operator at least once every three years and provide refresher training in relevant topics anytime there is reason to believe there is a need. The evaluation shall include, but not be limited to, changes in types of equipment in use; change in operating environment; direct observation of performance...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/828c64cd-a035-4258-83ae-2d6aaa9e0d6d/landing",
     "standards": [
       "DAFMAN 91-203",
       "OSHA"
@@ -1097,7 +1097,7 @@ const courses = [
     "frequency": "2 year",
     "regulation": "CFR 1910.1024",
     "description": "The U.S. Occupational Safety and Health Administration (OSHA) standard 29 CFR § 1910.1024 provides a comprehensive framework for the protection of workers from exposure to beryllium and its compounds in general industry. This regulation aims to reduce the significant risk of developing serious health conditions, such as Chronic Beryllium Disease (CBD) and lung cancer, by establishing strict exposure limits and requiring employers to implement a range of...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/f25e0fbe-c6ab-4bf4-925b-539382b12231/landing",
     "standards": [
       "OSHA"
     ],
@@ -1216,7 +1216,7 @@ const courses = [
     "frequency": "Annual",
     "regulation": "90-821",
     "description": "Public Health; This course is conducted at local level. Work area supervisors will, at least annually, assess worker knowledge of basic HAZCOM concepts and work area-specific HAZCOM procedures. Completion of the annual knowledge assessment must be documented. All personnel assigned the HAZCOM Training Code are required to demonstrate basic knowledge of HAZCOM program; Safety Data Sheets, Chemical Identification/Labeling and storage. Contact the installa...",
-    "trainingUrl": "https://usaf.percipio.com/linked-contents/78cc371a-6760-45ad-920b-5e91eac19893/landing",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/d82aa15a-bf17-4656-98fd-864d6235840c/landing",
     "standards": [
       "Local guidance"
     ],
@@ -1319,7 +1319,7 @@ const courses = [
     "frequency": "One Time",
     "regulation": "91-203, 29 FCR 1910.132",
     "description": "Public Health; This course is conducted at local level. This course will be used to document the completion of job safety training concerning applicable PPE. It will include the proper wear, care, and utilization of all types of PPE that will be encountered by an employee. It is to be conducted by the supervisor and will be a one-time only training unless PPE requirements change or the employee shows a lack of understanding regarding PPE. Contact the in...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/44cd1b2c-5e50-48cf-8b96-97a0a8ec9471/landing",
     "standards": [
       "DAFMAN 91-203",
       "OSHA"
@@ -1337,7 +1337,7 @@ const courses = [
     "frequency": "Annual",
     "regulation": "29 CFR 1910.1053",
     "description": "Public Health; Respirable crystalline silica (also known as RCS, silica dust, or quartz dust) is a common occupational hazard for coal and metal/nonmental (MNM) miners. Silica is a common component of rock composed of silicon and oxygen (chemical formula SiO2 ). Due to its small size, this dust may be inhaled and move throughout the lungs. It may be deposited in small airways and air sacs in the lungs and may remain there for long periods of time. Conta...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/39108e7a-f15f-4818-9b8a-83636f9abc33/landing",
     "standards": [
       "OSHA"
     ],
@@ -1354,7 +1354,7 @@ const courses = [
     "frequency": "One Time",
     "regulation": "90-821",
     "description": "Public Health; This course is conducted at local level. Supervisors (or their designee) will attend HAZCOM training initially and will provide workers with appropriate HAZCOM training prior to working with any hazardous material or when a work area/shop conditions or hazardous materials change. Training will be conducted IAW AFI 90-821, OSHA standards and is shop specific. The Public Health office provides Supervisor Training and workplace-specific trai...",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/a70a57be-62fa-496e-95c6-c67cf33ba92a/landing",
     "standards": [
       "OSHA"
     ],
@@ -1371,7 +1371,7 @@ const courses = [
     "frequency": "One Time",
     "regulation": "91-203, AFOSH STD 48-20, 48-127",
     "description": "Public Health; This course is conducted at local level. This training covers the supervisor's responsibilities of hazards that create excessive noise, hearing loss, and proper use of PPE. The training is required for all supervisors of personnel on the hearing conservation program. Contact the installation PH for questions relating to training and regulations. 28April2026 Course POC: For questions regarding this course, contact NGB.SE.SEG.Org@us.af.mil",
-    "trainingUrl": "",
+    "trainingUrl": "https://usaf.percipio.com/linked-contents/1ec622aa-ba3f-426c-adb7-ebe3339c4bd5/landing",
     "standards": [
       "DAFMAN 91-203"
     ],
