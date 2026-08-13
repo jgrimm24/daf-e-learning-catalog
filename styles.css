@@ -315,6 +315,11 @@ h1 {
   line-height: 1.2;
 }
 
+.selected-course-code {
+  overflow-wrap: anywhere;
+  color: var(--cover) !important;
+}
+
 .selected-link-actions {
   display: flex;
   flex-wrap: wrap;

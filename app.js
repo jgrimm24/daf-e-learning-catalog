@@ -2,6 +2,7 @@ const courses = [
   {
     "id": "course-21",
     "title": "Electromagnetic Field Radiation Training",
+    "courseCode": "80f85991-cfa5-4630-b1b0-c5ea6c54df5b",
     "category": "Bioenvironmental",
     "status": "Published",
     "visible": "Yes",
@@ -19,6 +20,7 @@ const courses = [
   {
     "id": "course-22",
     "title": "Electromagnetic Field Radiation Training Initial",
+    "courseCode": "5fcba8a5-d5e2-4153-904a-5b0b8dac60a3",
     "category": "Bioenvironmental",
     "status": "Published",
     "visible": "Yes",
@@ -36,6 +38,7 @@ const courses = [
   {
     "id": "course-25",
     "title": "Ergonomics",
+    "courseCode": "bb6c2580-cea7-4379-8f90-4f45e81489bd",
     "category": "Bioenvironmental",
     "status": "Published",
     "visible": "Yes",
@@ -53,6 +56,7 @@ const courses = [
   {
     "id": "course-56",
     "title": "Ionizing Radiation",
+    "courseCode": "8dbbc18f-a141-4fff-b180-afd3cc063290",
     "category": "Bioenvironmental",
     "status": "Published",
     "visible": "Yes",
@@ -70,6 +74,7 @@ const courses = [
   {
     "id": "course-60",
     "title": "Laser Safety for Operators",
+    "courseCode": "f3083e89-d766-4ec9-aa78-f308c3649daa",
     "category": "Bioenvironmental",
     "status": "Published",
     "visible": "Yes",
@@ -87,6 +92,7 @@ const courses = [
   {
     "id": "course-78",
     "title": "Respirator Filter Mask Awareness Training",
+    "courseCode": "8c10c93c-10e3-4b70-a2d8-492d5a95ea3a",
     "category": "Bioenvironmental",
     "status": "Published",
     "visible": "Yes",
@@ -104,6 +110,7 @@ const courses = [
   {
     "id": "course-79",
     "title": "Respirator Protection Training",
+    "courseCode": "1e6cf70f-3119-46e2-b371-41e429977ef2",
     "category": "Bioenvironmental",
     "status": "Published",
     "visible": "Yes",
@@ -121,6 +128,7 @@ const courses = [
   {
     "id": "course-85",
     "title": "Supervisor Respirator Protection Training",
+    "courseCode": "c98b4151-e342-4620-9a7c-ed8212c537c1",
     "category": "Bioenvironmental",
     "status": "Published",
     "visible": "Yes",
@@ -138,6 +146,7 @@ const courses = [
   {
     "id": "course-20",
     "title": "DOT HAZMAT Shipping",
+    "courseCode": "5d95571d-eb98-4979-8c01-ca1110676bb9",
     "category": "Environment",
     "status": "Published",
     "visible": "Yes",
@@ -155,6 +164,7 @@ const courses = [
   {
     "id": "course-23",
     "title": "EMS Awareness Training",
+    "courseCode": "7fe1346d-6c97-467a-8845-9d530e9db0f6",
     "category": "Environment",
     "status": "Published",
     "visible": "Yes",
@@ -172,6 +182,7 @@ const courses = [
   {
     "id": "course-24",
     "title": "EMS Senior Leadership Management",
+    "courseCode": "a0a79a80-2776-46d7-a0c5-0ee2ddf79094",
     "category": "Environment",
     "status": "Published",
     "visible": "Yes",
@@ -189,6 +200,7 @@ const courses = [
   {
     "id": "course-46",
     "title": "Hazardous Waste Management",
+    "courseCode": "edf3231b-4b32-4903-bb9d-336d4b8f350e",
     "category": "Environment",
     "status": "Published",
     "visible": "Yes",
@@ -206,6 +218,7 @@ const courses = [
   {
     "id": "course-49",
     "title": "HAZWOPER 40 Hr",
+    "courseCode": "52918735-b078-48b7-a7f1-e7d10f7cc493",
     "category": "Environment",
     "status": "Published",
     "visible": "Yes",
@@ -223,6 +236,7 @@ const courses = [
   {
     "id": "course-50",
     "title": "HAZWOPER 8 Hr",
+    "courseCode": "b4c537b1-46b8-4f5d-86a4-804fdcb1b1e0",
     "category": "Environment",
     "status": "Published",
     "visible": "Yes",
@@ -240,6 +254,7 @@ const courses = [
   {
     "id": "course-81",
     "title": "Spill Prevention and Response",
+    "courseCode": "1fcd8a81-01cb-414b-adad-18c1912ab808",
     "category": "Environment",
     "status": "Published",
     "visible": "Yes",
@@ -257,6 +272,7 @@ const courses = [
   {
     "id": "course-82",
     "title": "Storm Water Pollution Prevention",
+    "courseCode": "014372e4-e406-465b-8478-6581f08714f1",
     "category": "Environment",
     "status": "Published",
     "visible": "Yes",
@@ -274,6 +290,7 @@ const courses = [
   {
     "id": "course-87",
     "title": "Unit Environmental Coordinator",
+    "courseCode": "89f4b249-2d46-4f55-b980-52ffca5b94a9",
     "category": "Environment",
     "status": "Published",
     "visible": "Yes",
@@ -291,6 +308,7 @@ const courses = [
   {
     "id": "course-89",
     "title": "Universal Waste Management",
+    "courseCode": "963b0f44-e767-42f8-ad26-2cc9f905943b",
     "category": "Environment",
     "status": "Published",
     "visible": "Yes",
@@ -308,6 +326,7 @@ const courses = [
   {
     "id": "course-2",
     "title": "Aircraft Fire Guard Training",
+    "courseCode": "9487fbc8-a32c-4a6d-8da1-06ad2f5bf61e",
     "category": "Flight Safety",
     "status": "Published",
     "visible": "Yes",
@@ -326,6 +345,7 @@ const courses = [
   {
     "id": "course-7",
     "title": "Aviation Hazard Advisory System (AHAS)",
+    "courseCode": "51c66658-78ee-483f-9c1b-f4d37db1a1dc",
     "category": "Flight Safety",
     "status": "Published",
     "visible": "Yes",
@@ -343,6 +363,7 @@ const courses = [
   {
     "id": "course-11",
     "title": "Bird Remains and Recovery (SNARGE)",
+    "courseCode": "527fa668-1800-439b-88ad-c8b6218635a4",
     "category": "Flight Safety",
     "status": "Published",
     "visible": "Yes",
@@ -360,6 +381,7 @@ const courses = [
   {
     "id": "course-41",
     "title": "FOD & DOP Awareness Training",
+    "courseCode": "cd6da496-b5c9-4769-b6b1-eef0c951401b",
     "category": "Flight Safety",
     "status": "Published",
     "visible": "Yes",
@@ -377,6 +399,7 @@ const courses = [
   {
     "id": "course-55",
     "title": "Interim Safety Investigation Board",
+    "courseCode": "37a0bd46-21f8-40af-b8fc-b679c0612cf0",
     "category": "Flight Safety",
     "status": "Published",
     "visible": "Yes",
@@ -394,6 +417,7 @@ const courses = [
   {
     "id": "course-1",
     "title": "Aerial Work Platform Training",
+    "courseCode": "5af3ecc8-45e8-4100-9652-09ba7585d6ff",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -412,6 +436,7 @@ const courses = [
   {
     "id": "course-3",
     "title": "All Terrain Vehicle (ATV) Training",
+    "courseCode": "af886525-5283-424a-ac5f-248d673e30df",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -429,6 +454,7 @@ const courses = [
   {
     "id": "course-5",
     "title": "Arc Flash Awareness Training",
+    "courseCode": "55f889a3-a785-4ab9-b467-41151ee2eaf1",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -447,6 +473,7 @@ const courses = [
   {
     "id": "course-13",
     "title": "Boom Lift Training",
+    "courseCode": "1d1c880a-c2f7-452f-bdfc-cff1cc1cfc0c",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -465,6 +492,7 @@ const courses = [
   {
     "id": "course-15",
     "title": "Cold Weather Safety",
+    "courseCode": "7b5936d0-85af-4e81-9f3b-1e4b3da7e979",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -482,6 +510,7 @@ const courses = [
   {
     "id": "course-16",
     "title": "Combustible Dust Awareness",
+    "courseCode": "ef97b4ba-82df-4e93-9ea4-9766d414f649",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -500,6 +529,7 @@ const courses = [
   {
     "id": "course-17",
     "title": "Confined Space - Entrant and Attendant",
+    "courseCode": "b46d4ad5-9df6-4df6-842b-5fb6e7ee299d",
     "category": "Occupational Safety",
     "status": "Unpublished Changes",
     "visible": "Yes",
@@ -518,6 +548,7 @@ const courses = [
   {
     "id": "course-18",
     "title": "Confined Space - Supervisors Course",
+    "courseCode": "97327339-a026-4c0c-990e-006d5518d2fa",
     "category": "Occupational Safety",
     "status": "Unpublished Changes",
     "visible": "Yes",
@@ -536,6 +567,7 @@ const courses = [
   {
     "id": "course-19",
     "title": "Confined Space Rescue Course",
+    "courseCode": "f7ac7f54-c58c-4c90-a453-4e84b39d6076",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -554,6 +586,7 @@ const courses = [
   {
     "id": "course-36",
     "title": "Eyewash Station/Shower Training",
+    "courseCode": "412f8cc5-e6ea-441c-a97a-73e6a110e087",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -571,6 +604,7 @@ const courses = [
   {
     "id": "course-37",
     "title": "Fall Protection - Competent Person",
+    "courseCode": "838bb63d-c7ae-4e40-9ab8-7968d4a447ab",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -589,6 +623,7 @@ const courses = [
   {
     "id": "course-38",
     "title": "Fall Protection/Personal Fall Arrest System (PFAS) Training",
+    "courseCode": "ff2ea499-7365-4c43-aa09-b5bbbb49a956",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -607,6 +642,7 @@ const courses = [
   {
     "id": "course-40",
     "title": "Fire Extinguisher Training",
+    "courseCode": "4ab363d4-9b5f-4b2b-9f83-d72039a831d4",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -624,6 +660,7 @@ const courses = [
   {
     "id": "course-44",
     "title": "Hangar Door Awareness Training",
+    "courseCode": "faf11238-6e30-4227-bbf3-f1bc2f679711",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -641,6 +678,7 @@ const courses = [
   {
     "id": "course-45",
     "title": "Hazardous Energy - Authorized Employee",
+    "courseCode": "cb0441b5-773d-4f09-859f-b832a2c205da",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -659,6 +697,7 @@ const courses = [
   {
     "id": "course-52",
     "title": "HeartSaver/AED CPR Course",
+    "courseCode": "a9a2aba4-9387-4c2e-b991-f7bb0c23360c",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -676,6 +715,7 @@ const courses = [
   {
     "id": "course-58",
     "title": "Job Safety Training Outline Review",
+    "courseCode": "e86851b1-2dfe-4732-88cb-3a2daaa91ea3",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -693,6 +733,7 @@ const courses = [
   {
     "id": "course-59",
     "title": "Ladder Training",
+    "courseCode": "202f2d2b-31ce-4409-bc86-3c48f1bb51d5",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -711,6 +752,7 @@ const courses = [
   {
     "id": "course-64",
     "title": "New Commanders Safety Brief",
+    "courseCode": "efa42592-6f49-4db7-b747-785c9c7c47c5",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -728,6 +770,7 @@ const courses = [
   {
     "id": "course-65",
     "title": "Office Safety",
+    "courseCode": "1f18b6af-d2ef-4b1d-a2e9-f1486e7966c1",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -745,6 +788,7 @@ const courses = [
   {
     "id": "course-66",
     "title": "OSHA 10 General Industry Course",
+    "courseCode": "503d1863-f187-4f6b-8751-a6cd1e00e03d",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -762,6 +806,7 @@ const courses = [
   {
     "id": "course-67",
     "title": "OSHA 30 General Industry Course",
+    "courseCode": "781a897d-e3fe-48de-9925-916668dbbe38",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -779,6 +824,7 @@ const courses = [
   {
     "id": "course-68",
     "title": "Overhead Hoist Operation",
+    "courseCode": "e0ba05d6-0301-4cc7-af79-bba027dd686b",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -797,6 +843,7 @@ const courses = [
   {
     "id": "course-69",
     "title": "Power Industrial Operator (All Terrain Forklift)",
+    "courseCode": "3d07cc3c-62c4-45b3-a473-1974d6d037b1",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -814,6 +861,7 @@ const courses = [
   {
     "id": "course-70",
     "title": "Power Industrial Truck Initial",
+    "courseCode": "bbde34fe-cb26-4bbc-b0d4-a63e694bfec1",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -831,6 +879,7 @@ const courses = [
   {
     "id": "course-71",
     "title": "Powered Industrial Operator - Order Picker",
+    "courseCode": "cfaad1d4-3b50-4ad5-90ac-30fdabfa85e4",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -848,6 +897,7 @@ const courses = [
   {
     "id": "course-72",
     "title": "Powered Industrial Operator (10K)",
+    "courseCode": "29ae0f0c-3fb9-43ca-ad85-e0d28b6535d7",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -865,6 +915,7 @@ const courses = [
   {
     "id": "course-73",
     "title": "Powered Industrial Operator (15k)",
+    "courseCode": "301a9d8e-1874-4c22-8e27-52f2a8faa89f",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -882,6 +933,7 @@ const courses = [
   {
     "id": "course-74",
     "title": "Powered Industrial Operator (2-3K)",
+    "courseCode": "6f90d36e-e98c-4843-b0c2-992796b798af",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -899,6 +951,7 @@ const courses = [
   {
     "id": "course-75",
     "title": "Powered Industrial Operator (4-6K)",
+    "courseCode": "2b7627d5-249d-4718-aa92-d8f19f000df6",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -916,6 +969,7 @@ const courses = [
   {
     "id": "course-86",
     "title": "Supervisor's Safety Training - Local Brief",
+    "courseCode": "1513a539-7fcb-4a3c-8d0c-00df7284a7a6",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -933,6 +987,7 @@ const courses = [
   {
     "id": "course-88",
     "title": "Unit Safety Representative Local Program Brief",
+    "courseCode": "80b0555c-9821-4a46-8763-ad8a9ca3741b",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -950,6 +1005,7 @@ const courses = [
   {
     "id": "course-92",
     "title": "Vertical Lift Training",
+    "courseCode": "828c64cd-a035-4258-83ae-2d6aaa9e0d6d",
     "category": "Occupational Safety",
     "status": "Published",
     "visible": "Yes",
@@ -968,6 +1024,7 @@ const courses = [
   {
     "id": "course-77",
     "title": "Privilege Safety Brief",
+    "courseCode": "",
     "category": "Other",
     "status": "Published",
     "visible": "Yes",
@@ -985,6 +1042,7 @@ const courses = [
   {
     "id": "course-90",
     "title": "Utility Task Vehicle (UTV) Training",
+    "courseCode": "",
     "category": "Other",
     "status": "Published",
     "visible": "Yes",
@@ -1002,6 +1060,7 @@ const courses = [
   {
     "id": "course-91",
     "title": "Vehicle Mounted Elevated Platforms",
+    "courseCode": "",
     "category": "Other",
     "status": "Published",
     "visible": "Yes",
@@ -1019,6 +1078,7 @@ const courses = [
   {
     "id": "course-6",
     "title": "Asbestos Awareness",
+    "courseCode": "4226dcb7-5507-4efc-aa47-acf42244437f",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1036,6 +1096,7 @@ const courses = [
   {
     "id": "course-8",
     "title": "Benzene Training",
+    "courseCode": "3589bf59-0bd9-4a3b-a68b-508ec364f783",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1054,6 +1115,7 @@ const courses = [
   {
     "id": "course-9",
     "title": "Benzene Training (Above Action Level)",
+    "courseCode": "1ccad766-2bf5-4fca-9b89-e083ad9a7976",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1072,6 +1134,7 @@ const courses = [
   {
     "id": "course-10",
     "title": "Beryllium",
+    "courseCode": "f25e0fbe-c6ab-4bf4-925b-539382b12231",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1089,6 +1152,7 @@ const courses = [
   {
     "id": "course-12",
     "title": "Bloodborne Pathogen Training",
+    "courseCode": "79b24ade-252d-47ab-86d5-67b28f6cfc33",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1106,6 +1170,7 @@ const courses = [
   {
     "id": "course-14",
     "title": "Cadmium Awareness",
+    "courseCode": "ed3195ac-1018-40a2-a0a3-65d4384dc1ce",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1123,6 +1188,7 @@ const courses = [
   {
     "id": "course-26",
     "title": "Ethylene Oxide",
+    "courseCode": "ee270a14-56a5-44ac-92a8-3f64cc5fe20a",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1140,6 +1206,7 @@ const courses = [
   {
     "id": "course-39",
     "title": "Fetal Protection Program & Reproductive Health",
+    "courseCode": "75a5d051-4bfe-4ebe-8eb5-a0445ffb0266",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1157,6 +1224,7 @@ const courses = [
   {
     "id": "course-42",
     "title": "Formaldehyde",
+    "courseCode": "2855732f-cfe2-4e5e-9c99-8172c80d21ec",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1174,6 +1242,7 @@ const courses = [
   {
     "id": "course-47",
     "title": "HAZCOM Initial Training",
+    "courseCode": "78cc371a-6760-45ad-920b-5e91eac19893",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1191,6 +1260,7 @@ const courses = [
   {
     "id": "course-48",
     "title": "HAZCOM Knowledge Assessment",
+    "courseCode": "d82aa15a-bf17-4656-98fd-864d6235840c",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1208,6 +1278,7 @@ const courses = [
   {
     "id": "course-51",
     "title": "Hearing Conservation Training",
+    "courseCode": "7448bde9-c29f-44bd-93a8-0c489c7bb9f5",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1225,6 +1296,7 @@ const courses = [
   {
     "id": "course-53",
     "title": "Hexavalent Chromium Training",
+    "courseCode": "0286b865-81eb-4372-9fc1-d32f26b7fc50",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1243,6 +1315,7 @@ const courses = [
   {
     "id": "course-57",
     "title": "Isocynates",
+    "courseCode": "20afa3f4-1b28-4287-953b-5a603a062590",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1260,6 +1333,7 @@ const courses = [
   {
     "id": "course-61",
     "title": "Lead Awareness Training",
+    "courseCode": "b069afe7-8672-45de-b30c-545c17db4f76",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1277,6 +1351,7 @@ const courses = [
   {
     "id": "course-63",
     "title": "Methylene Chloride Training",
+    "courseCode": "ecdbab0b-1cc1-417c-9f2f-19632883c22b",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1294,6 +1369,7 @@ const courses = [
   {
     "id": "course-76",
     "title": "PPE Training",
+    "courseCode": "44cd1b2c-5e50-48cf-8b96-97a0a8ec9471",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1312,6 +1388,7 @@ const courses = [
   {
     "id": "course-80",
     "title": "Silica",
+    "courseCode": "39108e7a-f15f-4818-9b8a-83636f9abc33",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1329,6 +1406,7 @@ const courses = [
   {
     "id": "course-83",
     "title": "Supervisor HAZCOM Training",
+    "courseCode": "a70a57be-62fa-496e-95c6-c67cf33ba92a",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1346,6 +1424,7 @@ const courses = [
   {
     "id": "course-84",
     "title": "Supervisor Hearing Conservation Training",
+    "courseCode": "1ec622aa-ba3f-426c-adb7-ebe3339c4bd5",
     "category": "Public Health",
     "status": "Published",
     "visible": "Yes",
@@ -1363,6 +1442,7 @@ const courses = [
   {
     "id": "course-4",
     "title": "AMMO 47",
+    "courseCode": "35e20fd6-e361-4341-8ef9-2c165d8b2a23",
     "category": "Weapons Safety",
     "status": "Published",
     "visible": "Yes",
@@ -1381,6 +1461,7 @@ const courses = [
   {
     "id": "course-27",
     "title": "Explosive Safety - Aircrew Flight Equipment",
+    "courseCode": "7facb796-4b97-44f0-a45d-23579f02b32a",
     "category": "Weapons Safety",
     "status": "Published",
     "visible": "Yes",
@@ -1398,6 +1479,7 @@ const courses = [
   {
     "id": "course-28",
     "title": "Explosive Safety - BASH Pyrotechnics",
+    "courseCode": "8093bbb4-4db3-470a-9a4a-474324d8d97b",
     "category": "Weapons Safety",
     "status": "Published",
     "visible": "Yes",
@@ -1415,6 +1497,7 @@ const courses = [
   {
     "id": "course-29",
     "title": "Explosive Safety - Egress",
+    "courseCode": "7e490798-b775-4c1b-b85f-20645ba38b3a",
     "category": "Weapons Safety",
     "status": "Published",
     "visible": "Yes",
@@ -1432,6 +1515,7 @@ const courses = [
   {
     "id": "course-30",
     "title": "Explosive Safety - EOD",
+    "courseCode": "4327a061-bd44-4b26-ad3e-fde4f6a8087e",
     "category": "Weapons Safety",
     "status": "Published",
     "visible": "Yes",
@@ -1449,6 +1533,7 @@ const courses = [
   {
     "id": "course-31",
     "title": "Explosive Safety - Fire Department Response",
+    "courseCode": "f7163321-a600-4658-84fb-82ecb1ae64fd",
     "category": "Weapons Safety",
     "status": "Published",
     "visible": "Yes",
@@ -1466,6 +1551,7 @@ const courses = [
   {
     "id": "course-32",
     "title": "Explosive Safety - Weapons Loading",
+    "courseCode": "299a2128-04b6-49c3-8d5e-c5159e781525",
     "category": "Weapons Safety",
     "status": "Published",
     "visible": "Yes",
@@ -1483,6 +1569,7 @@ const courses = [
   {
     "id": "course-33",
     "title": "Explosive Safety Program - Munitions",
+    "courseCode": "85c2841e-4487-4157-92ec-1942b3bb10e3",
     "category": "Weapons Safety",
     "status": "Published",
     "visible": "Yes",
@@ -1500,6 +1587,7 @@ const courses = [
   {
     "id": "course-34",
     "title": "Explosive Safety Training - Security Forces",
+    "courseCode": "08f5a770-63f7-46fe-a52e-72614570fc28",
     "category": "Weapons Safety",
     "status": "Published",
     "visible": "Yes",
@@ -1517,6 +1605,7 @@ const courses = [
   {
     "id": "course-35",
     "title": "Explosive Safety Training - Transportation",
+    "courseCode": "06692046-214c-4655-a447-1c6c08201a90",
     "category": "Weapons Safety",
     "status": "Published",
     "visible": "Yes",
@@ -1534,6 +1623,7 @@ const courses = [
   {
     "id": "course-43",
     "title": "Ground-Burst Simulator and Smoke Producing Devices",
+    "courseCode": "cd3346e8-a75d-4d67-8637-854782f699a6",
     "category": "Weapons Safety",
     "status": "Published",
     "visible": "Yes",
@@ -1551,6 +1641,7 @@ const courses = [
   {
     "id": "course-62",
     "title": "Maintenance on Explosive Loaded Aircraft",
+    "courseCode": "1661954a-1563-4d45-90ec-1599981a6a3c",
     "category": "Weapons Safety",
     "status": "Published",
     "visible": "Yes",
@@ -2161,6 +2252,7 @@ function renderSelectedTrainingLinks() {
             (course) => `
               <div class="selected-link-item">
                 <strong>${escapeHtml(course.title)}</strong>
+                <small class="selected-course-code">Course code: ${escapeHtml(course.courseCode || "Not available")}</small>
                 <small>${escapeHtml(getFrequencyGroup(course))} · ${escapeHtml(course.category)}</small>
               </div>
             `,
@@ -2223,7 +2315,7 @@ function bindSelectedTrainingActions() {
 
 function generateSelectedTrainingText() {
   return getSelectedTrainingCourses()
-    .map((course) => [course.title, getFrequencyGroup(course), course.category, course.frequency, course.trainingUrl].join(" | "))
+    .map((course) => [course.title, course.courseCode || "Not available", getFrequencyGroup(course), course.category, course.frequency, course.trainingUrl].join(" | "))
     .join("\n");
 }
 
@@ -2236,6 +2328,7 @@ function downloadSelectedTrainingFile(format) {
         (course) => `
           <tr>
             <td>${escapeHtml(course.title)}</td>
+            <td>${escapeHtml(course.courseCode || "Not available")}</td>
             <td>${escapeHtml(getFrequencyGroup(course))}</td>
             <td>${escapeHtml(course.category)}</td>
             <td>${escapeHtml(course.frequency)}</td>
@@ -2261,7 +2354,7 @@ function downloadSelectedTrainingFile(format) {
         <body>
           <h1>Selected DAF E-Learning Trainings</h1>
           <table>
-            <thead><tr><th>Course</th><th>Training Cycle</th><th>Training Area</th><th>Frequency</th><th>Training Link</th></tr></thead>
+            <thead><tr><th>Course</th><th>Course Code</th><th>Training Cycle</th><th>Training Area</th><th>Frequency</th><th>Training Link</th></tr></thead>
             <tbody>${rows}</tbody>
           </table>
         </body>
@@ -2271,9 +2364,10 @@ function downloadSelectedTrainingFile(format) {
     return;
   }
 
-  const headers = ["Course", "Training Cycle", "Training Area", "Frequency", "Training Link"];
+  const headers = ["Course", "Course Code", "Training Cycle", "Training Area", "Frequency", "Training Link"];
   const rows = selectedCourses.map((course) => [
     course.title,
+    course.courseCode || "Not available",
     getFrequencyGroup(course),
     course.category,
     course.frequency,
@@ -2329,6 +2423,7 @@ function frequencyGroupRank(group) {
 function courseSearchText(course) {
   return [
     course.title,
+    course.courseCode,
     course.category,
     course.modality,
     course.frequency,
