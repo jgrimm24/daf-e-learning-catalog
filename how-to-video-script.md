@@ -1,4 +1,4 @@
-# DAF E-Learning Catalog How-To Video
+# DAF Safety Training Catalog How-To Video
 
 Target length: 2 to 3 minutes
 
@@ -22,7 +22,7 @@ On screen: Main catalog page, showing the title, browse list, book, and right-si
 
 Narration:
 
-Welcome to the DAF E-Learning Catalog. This guide helps you find safety, health, environmental, flight, and weapons training available on DAF E-Learning.
+Welcome to the DAF Safety Training Catalog. This guide helps you find safety, health, environmental, flight, and weapons training available on DAF E-Learning.
 
 The catalog is built to work like a book. You can browse by training area, search for a specific topic, filter by training frequency, and copy clean training links for use on NIPR.
 
@@ -133,7 +133,7 @@ Use the direct catalog address when sharing the site: https://jgrimm24.github.io
 
 ## Short Version Script
 
-Welcome to the DAF E-Learning Catalog. This site helps you find safety, health, environmental, flight, and weapons training available on DAF E-Learning.
+Welcome to the DAF Safety Training Catalog. This site helps you find safety, health, environmental, flight, and weapons training available on DAF E-Learning.
 
 Use Browse on the left to move by training area. Select a section like Occupational Safety, Weapons Safety, or Flight Safety to jump through the catalog.
 

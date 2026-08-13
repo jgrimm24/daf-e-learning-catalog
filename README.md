@@ -1,4 +1,4 @@
-# DAF E-Learning Catalog
+# DAF Safety Training Catalog
 
 Static course catalog prototype for Air National Guard training references.
 

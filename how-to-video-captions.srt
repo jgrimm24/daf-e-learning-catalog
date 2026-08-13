@@ -1,6 +1,6 @@
 1
 00:00:00,000 --> 00:00:08,000
-Welcome to the DAF E-Learning Catalog. This guide helps you find safety, health, environmental, flight, and weapons training available on DAF E-Learning.
+Welcome to the DAF Safety Training Catalog. This guide helps you find safety, health, environmental, flight, and weapons training available on DAF E-Learning.
 
 2
 00:00:08,000 --> 00:00:17,000

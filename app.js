@@ -1670,7 +1670,7 @@ function coverPage() {
       <img class="cover-badge" src="ANG%20Safety%20Badge.jpeg" alt="ANG Safety Badge" />
       <div>
         <p class="kicker">Air National Guard</p>
-        <h2>E-Learning Catalog</h2>
+        <h2>Safety Training Catalog</h2>
       </div>
     </div>
   `;
